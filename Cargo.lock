@@ -482,6 +482,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "intro"
+version = "0.0.1"
+dependencies = [
+ "cosmwasm-std",
+ "cw-multi-test",
+]
+
+[[package]]
 name = "itertools"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

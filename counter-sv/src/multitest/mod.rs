@@ -1,8 +1,8 @@
 #![cfg(test)]
 
+use crate::contract::sv::mt::{CodeId, CounterContractProxy};
 use sylvia::cw_multi_test::IntoAddr;
 use sylvia::multitest::App;
-use crate::contract::sv::mt::{CodeId, CounterContractProxy};
 
 #[test]
 fn instantiate() {

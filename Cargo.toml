@@ -2,7 +2,7 @@
 members = [
     "counter",
     "counter-sv"
-]
+, "intro"]
 
 resolver = "2"
 
