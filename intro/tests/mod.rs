@@ -1,5 +1,3 @@
-#![cfg(test)]
-
 mod multitest;
 
 use cosmwasm_std::Empty;
