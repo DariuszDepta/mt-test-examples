@@ -32,6 +32,7 @@ fn execute_should_work() {
     let sender_addr = app.api().addr_make("sender");
 
     // invoke the `execute` entry-point of the contract
+    // which should return empty data
     let response = app
         .execute_contract(sender_addr, contract_addr, &Empty {}, &[])
         .unwrap();
