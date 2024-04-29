@@ -4,7 +4,7 @@ use cw_multi_test::{App, Executor};
 
 #[test]
 fn execute_should_work() {
-    // prepare the chain simulator
+    // prepare the simulator
     let mut app = App::default();
 
     // prepare address of the contract creator
@@ -16,6 +16,7 @@ fn execute_should_work() {
     // prepare address of the contract owner
     let owner_addr = app.api().addr_make("owner");
 
+    // create an instance of the contract and save its address
     let contract_addr = app
         .instantiate_contract(
             code_id,
@@ -30,7 +31,7 @@ fn execute_should_work() {
     // prepare address of the execute message sender
     let sender_addr = app.api().addr_make("sender");
 
-    // invoke `execute` entry-point of the contract
+    // invoke the `execute` entry-point of the contract
     let response = app
         .execute_contract(sender_addr, contract_addr, &Empty {}, &[])
         .unwrap();

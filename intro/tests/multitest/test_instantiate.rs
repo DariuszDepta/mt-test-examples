@@ -4,7 +4,7 @@ use cw_multi_test::{App, Executor};
 
 #[test]
 fn instantiate_should_work() {
-    // prepare the chain simulator
+    // prepare the simulator
     let mut app = App::default();
 
     // prepare address of the contract creator
@@ -16,6 +16,7 @@ fn instantiate_should_work() {
     // prepare address of the contract owner
     let owner_addr = app.api().addr_make("owner");
 
+    // invoke the `instantiate` entry-point of the contract
     let contract_addr = app
         .instantiate_contract(
             code_id,
@@ -27,6 +28,7 @@ fn instantiate_should_work() {
         )
         .unwrap();
 
+    // contract is instantiated, we have a valid contract address
     assert_eq!(
         contract_addr.as_str(),
         "cosmwasm1mzdhwvvh22wrt07w59wxyd58822qavwkx5lcej7aqfkpqqlhaqfsgn6fq2"
