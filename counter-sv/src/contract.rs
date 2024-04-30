@@ -17,9 +17,7 @@ pub struct CounterContract {
 #[contract]
 impl CounterContract {
     pub const fn new() -> Self {
-        Self {
-            count: Item::new("count"),
-        }
+        Self { count: Item::new("count") }
     }
 
     #[sv::msg(instantiate)]
@@ -30,10 +28,7 @@ impl CounterContract {
 
     #[sv::msg(exec)]
     fn increment(&self, ctx: ExecCtx) -> StdResult<Response> {
-        self.count
-            .update(ctx.deps.storage, |count| -> StdResult<u64> {
-                Ok(count.saturating_add(1))
-            })?;
+        self.count.update(ctx.deps.storage, |count| -> StdResult<u64> { Ok(count.saturating_add(1)) })?;
         Ok(Response::new())
     }
 
