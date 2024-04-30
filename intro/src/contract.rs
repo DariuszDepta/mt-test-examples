@@ -6,19 +6,21 @@ use cosmwasm_std::{
 };
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn instantiate(deps: DepsMut, env: Env, info: MessageInfo, msg: Empty) -> StdResult<Response> {
-    let _ = (deps, env, info, msg);
+pub fn instantiate(
+    _deps: DepsMut,
+    _env: Env,
+    _info: MessageInfo,
+    _msg: Empty,
+) -> StdResult<Response> {
     Ok(Response::default())
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn execute(deps: DepsMut, env: Env, info: MessageInfo, msg: Empty) -> StdResult<Response> {
-    let _ = (deps, env, info, msg);
+pub fn execute(_deps: DepsMut, _env: Env, _info: MessageInfo, _msg: Empty) -> StdResult<Response> {
     Ok(Response::default())
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn query(deps: Deps, env: Env, msg: Empty) -> StdResult<Binary> {
-    let _ = (deps, env, msg);
+pub fn query(_deps: Deps, _env: Env, _msg: Empty) -> StdResult<Binary> {
     Ok(to_json_binary(&Empty {}).unwrap())
 }
