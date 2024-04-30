@@ -1,8 +1,10 @@
 [workspace]
+
 members = [
     "counter",
-    "counter-sv"
-, "intro"]
+    "counter-sv",
+    "intro"
+]
 
 resolver = "2"
 
