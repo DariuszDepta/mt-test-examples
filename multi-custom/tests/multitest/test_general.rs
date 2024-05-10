@@ -2,6 +2,7 @@ use cosmwasm_std::Empty;
 use cw_multi_test::{custom_app, no_init, App, Contract, ContractWrapper, Executor};
 use multi_custom::converter_contract;
 use multi_custom::msg::VirtualStakeCustomMsg;
+use multi_custom::query::VirtualStakeCustomQuery;
 use multi_custom::virtual_staking_contract;
 
 fn converter_contract() -> Box<dyn Contract<Empty>> {
@@ -12,7 +13,7 @@ fn converter_contract() -> Box<dyn Contract<Empty>> {
     ))
 }
 
-fn converter_contract_empty() -> Box<dyn Contract<VirtualStakeCustomMsg>> {
+fn converter_contract_empty() -> Box<dyn Contract<VirtualStakeCustomMsg, VirtualStakeCustomQuery>> {
     Box::new(ContractWrapper::new_with_empty(
         converter_contract::execute,
         converter_contract::instantiate,
@@ -20,7 +21,7 @@ fn converter_contract_empty() -> Box<dyn Contract<VirtualStakeCustomMsg>> {
     ))
 }
 
-fn virtual_staking_contract() -> Box<dyn Contract<VirtualStakeCustomMsg>> {
+fn virtual_staking_contract() -> Box<dyn Contract<VirtualStakeCustomMsg, VirtualStakeCustomQuery>> {
     Box::new(ContractWrapper::new(
         virtual_staking_contract::execute,
         virtual_staking_contract::instantiate,
@@ -52,7 +53,7 @@ fn instantiate_converter_contract_should_work() {
 #[test]
 fn instantiate_virtual_staking_contract_should_work() {
     // prepare the simulator
-    let mut app = custom_app::<VirtualStakeCustomMsg, Empty, _>(no_init);
+    let mut app = custom_app::<VirtualStakeCustomMsg, VirtualStakeCustomQuery, _>(no_init);
 
     // prepare address of the contract creator
     let creator_addr = app.api().addr_make("creator");
@@ -73,7 +74,7 @@ fn instantiate_virtual_staking_contract_should_work() {
 #[test]
 fn instantiate_both_should_work() {
     // prepare the simulator
-    let mut app = custom_app::<VirtualStakeCustomMsg, Empty, _>(no_init);
+    let mut app = custom_app::<VirtualStakeCustomMsg, VirtualStakeCustomQuery, _>(no_init);
 
     // prepare address of the contract creator
     let creator_addr = app.api().addr_make("creator");

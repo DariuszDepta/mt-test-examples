@@ -1,9 +1,15 @@
-use cosmwasm_std::Coin;
+use cosmwasm_std::{Coin, CustomQuery};
+use schemars::JsonSchema;
+use serde::{Deserialize, Serialize};
 
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize, JsonSchema)]
 pub enum VirtualStakeCustomQuery {
     VirtualStake(VirtualStakeQuery),
 }
 
+impl CustomQuery for VirtualStakeCustomQuery {}
+
+#[derive(Debug, PartialEq, Clone, Serialize, Deserialize, JsonSchema)]
 pub enum VirtualStakeQuery {
     BondStatus { contract: String },
     SlashRatio {},
