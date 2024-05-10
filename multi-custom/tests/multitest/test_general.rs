@@ -12,6 +12,14 @@ fn converter_contract() -> Box<dyn Contract<Empty>> {
     ))
 }
 
+fn converter_contract_empty() -> Box<dyn Contract<VirtualStakeCustomMsg>> {
+    Box::new(ContractWrapper::new_with_empty(
+        converter_contract::execute,
+        converter_contract::instantiate,
+        converter_contract::query,
+    ))
+}
+
 fn virtual_staking_contract() -> Box<dyn Contract<VirtualStakeCustomMsg>> {
     Box::new(ContractWrapper::new(
         virtual_staking_contract::execute,
@@ -71,7 +79,7 @@ fn instantiate_both_should_work() {
     let creator_addr = app.api().addr_make("creator");
 
     // store the contract's code on the chain
-    //let _code_id_1 = app.store_code_with_creator(creator_addr.clone(), converter_contract());
+    let _code_id_1 = app.store_code_with_creator(creator_addr.clone(), converter_contract_empty());
 
     // store the contract's code on the chain
     let _code_id_2 = app.store_code_with_creator(creator_addr, virtual_staking_contract());
