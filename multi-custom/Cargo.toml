@@ -12,6 +12,8 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 cosmwasm-std = { version = "2", features = ["staking"] }
+schemars = "0.8.19"
+serde = "1.0.201"
 
 [dev-dependencies]
 cw-multi-test = "2"
