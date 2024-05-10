@@ -21,5 +21,5 @@ fn query_should_work() {
 
     // invoke the `query` entry-point of the contract,
     // which should return an empty message
-    let _: Empty = app.wrap().query_wasm_smart(&contract_addr, &Empty {}).unwrap();
+    let _: Empty = app.wrap().query_wasm_smart(contract_addr, &Empty {}).unwrap();
 }

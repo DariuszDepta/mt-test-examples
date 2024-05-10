@@ -15,6 +15,7 @@ pub struct CounterContract {
 
 #[cfg_attr(not(feature = "library"), sylvia::entry_points)]
 #[contract]
+#[allow(clippy::new_without_default)]
 impl CounterContract {
     pub const fn new() -> Self {
         Self { count: Item::new("count") }
