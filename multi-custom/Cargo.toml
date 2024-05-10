@@ -1,0 +1,17 @@
+[package]
+name = "multi-custom"
+authors = ["Dariusz Depta <depta@engos.de>"]
+version = "0.0.1"
+edition = "2021"
+
+[features]
+library = []
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+cosmwasm-std = { version = "2", features = ["staking"] }
+
+[dev-dependencies]
+cw-multi-test = "2"

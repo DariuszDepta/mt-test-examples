@@ -3,7 +3,8 @@
 members = [
     "counter",
     "counter-sv",
-    "intro"
+    "intro",
+    "multi-custom"
 ]
 
 resolver = "2"
