@@ -16,4 +16,4 @@ schemars = "0.8.19"
 serde = "1.0.201"
 
 [dev-dependencies]
-cw-multi-test = "2"
+cw-multi-test = { version = "2", features = ["staking"] }
