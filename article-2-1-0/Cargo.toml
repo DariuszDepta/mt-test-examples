@@ -4,7 +4,9 @@ version = "0.0.1"
 edition = "2021"
 
 [dependencies]
+serde = { version = "1.0.204", features = ["derive"] }
 
 [dev-dependencies]
 cosmwasm-std = "2.0.4"
 cw-multi-test = "2.1.0"
+schemars = "0.8.21"
