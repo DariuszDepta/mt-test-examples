@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+    "article-2-1-0",
     "counter",
     "counter-sv",
     "intro",
