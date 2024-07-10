@@ -8,5 +8,5 @@ serde = { version = "1.0.204", features = ["derive"] }
 
 [dev-dependencies]
 cosmwasm-std = "2.0.4"
-cw-multi-test = "2.1.0"
+cw-multi-test = { version = "2.1.0", features = ["staking", "cosmwasm_2_0"] }
 schemars = "0.8.21"
