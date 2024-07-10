@@ -15,8 +15,9 @@ fn staking_unstaking_should_work() {
     // Amount of tokens after delegation.
     const FEWER_AMOUNT: u128 = INITIAL_AMOUNT - DELEGATION_AMOUNT;
 
-    let delegator_addr = "delegator".into_bech32();
-    let validator_addr = "valoper".into_bech32();
+    const DELEGATOR: &str = "delegator";
+
+    let validator_addr = "validator".into_bech32_with_prefix("testvaloper");
 
     let valoper = Validator::new(
         validator_addr.to_string(),
@@ -33,7 +34,7 @@ fn staking_unstaking_should_work() {
             .bank
             .init_balance(
                 storage,
-                &delegator_addr,
+                &api.addr_make(DELEGATOR),
                 vec![coin(INITIAL_AMOUNT, BONDED_DENOM)],
             )
             .unwrap();
@@ -55,6 +56,8 @@ fn staking_unstaking_should_work() {
             .add_validator(api, storage, &block, valoper)
             .unwrap();
     });
+
+    let delegator_addr = app.api().addr_make(DELEGATOR);
 
     // delegate tokens to validator
     app.execute(
