@@ -1,6 +1,6 @@
-# Test examples for MultiTest
+# MultiTest test examples
 
-| Directory        | Description              |
-|------------------|--------------------------|
-| [intro](./intro) | Getting started example. |
+| Directory                | Description              |
+|--------------------------|--------------------------|
+| [mte-intro](./mte-intro) | Getting started example. |
 

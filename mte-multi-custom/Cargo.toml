@@ -1,5 +1,5 @@
 [package]
-name = "multi-custom"
+name = "mte-multi-custom"
 authors = ["Dariusz Depta <depta@engos.de>"]
 version = "0.0.1"
 edition = "2021"
