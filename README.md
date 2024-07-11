@@ -3,5 +3,3 @@
 ## [mte-intro](./mte-intro)
 
 Getting started example.
-
-
