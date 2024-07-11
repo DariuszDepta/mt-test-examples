@@ -1,9 +1,9 @@
 use cosmwasm_std::Empty;
 use cw_multi_test::{custom_app, no_init, App, Contract, ContractWrapper, Executor};
-use multi_custom::converter_contract;
-use multi_custom::msg::VirtualStakeCustomMsg;
-use multi_custom::query::VirtualStakeCustomQuery;
-use multi_custom::virtual_staking_contract;
+use mte_multi_custom::converter_contract;
+use mte_multi_custom::msg::VirtualStakeCustomMsg;
+use mte_multi_custom::query::VirtualStakeCustomQuery;
+use mte_multi_custom::virtual_staking_contract;
 
 fn converter_contract() -> Box<dyn Contract<Empty>> {
     Box::new(ContractWrapper::new(
