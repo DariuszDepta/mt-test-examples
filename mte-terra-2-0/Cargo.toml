@@ -1,6 +1,18 @@
 [package]
 name = "mte-terra-2-0"
-version = "0.1.0"
+authors = ["Dariusz Depta <depta@engos.de>"]
+version = "0.0.1"
 edition = "2021"
 
+[features]
+library = []
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
+cosmwasm-std = { version = "1.5.5", features = ["staking"] }
+classic-bindings = { version = "0.2.1" }
+
+[dev-dependencies]
+cw-multi-test = { version = "0.16.5", features = ["staking"] }
