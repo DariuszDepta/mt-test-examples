@@ -30,7 +30,7 @@ fn virtual_staking_contract() -> Box<dyn Contract<VirtualStakeCustomMsg, Virtual
 }
 
 #[test]
-fn instantiate_converter_contract_should_work() {
+fn instantiating_converter_contract_should_work() {
     // prepare the simulator
     let mut app = App::default();
 
@@ -51,7 +51,7 @@ fn instantiate_converter_contract_should_work() {
 }
 
 #[test]
-fn instantiate_virtual_staking_contract_should_work() {
+fn instantiating_virtual_staking_contract_should_work() {
     // prepare the simulator
     let mut app = custom_app::<VirtualStakeCustomMsg, VirtualStakeCustomQuery, _>(no_init);
 
@@ -72,7 +72,7 @@ fn instantiate_virtual_staking_contract_should_work() {
 }
 
 #[test]
-fn instantiate_both_should_work() {
+fn instantiating_both_contracts_should_work() {
     // prepare the simulator
     let mut app = custom_app::<VirtualStakeCustomMsg, VirtualStakeCustomQuery, _>(no_init);
 
