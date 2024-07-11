@@ -1,4 +1,4 @@
-# Test examples using [MultiTest](https://crates.io/crates/cw-multi-test)
+# Test examples using [CosmWasm MultiTest](https://crates.io/crates/cw-multi-test)
 
 | Directory                | Description              |
 |--------------------------|--------------------------|
