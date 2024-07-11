@@ -1,4 +1,4 @@
-# MultiTest test examples
+# Test examples using MultiTest
 
 | Directory                | Description              |
 |--------------------------|--------------------------|
