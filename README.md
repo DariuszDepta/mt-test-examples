@@ -1,6 +1,8 @@
 ### Examples of tests written using
 # [CosmWasm MultiTest](https://crates.io/crates/cw-multi-test)
 
-## [mte-intro](./mte-intro)
+|         Example          | Description              |
+|:------------------------:|--------------------------|
+| [mte-intro](./mte-intro) | Getting started example. |
 
-Getting started example.
+
