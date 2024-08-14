@@ -9,6 +9,11 @@ tasks:
     cmds:
       - cmd: cargo +stable build
 
+  clean:
+    desc: Deletes all compilation artifacts
+    cmds:
+      - cmd: cargo clean
+
   clippy:
     desc: Runs clippy for all targets
     cmds:
