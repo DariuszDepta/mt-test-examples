@@ -3,12 +3,18 @@ fn with_block_should_work() {
     use cosmwasm_std::{BlockInfo, Timestamp};
     use cw_multi_test::{no_init, AppBuilder};
 
-    // build the chain initialized with the custom block
-    let app = AppBuilder::default().with_block(BlockInfo {
+    // create the chain builder
+    let builder = AppBuilder::default();
+
+    // prepare the custom block
+    let block = BlockInfo {
         height: 21,
         time: Timestamp::from_nanos(1_571_797_419_879_305_544),
         chain_id: "milky-way-testnet".to_string(),
-    }).build(no_init);
+    };
+
+    // build the chain initialized with the custom block
+    let app = builder.with_block(block).build(no_init);
 
     // get the current block properties
     let block = app.block_info();
