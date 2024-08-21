@@ -13,6 +13,7 @@ tasks:
     desc: Deletes all compilation artifacts
     cmds:
       - cmd: cargo clean
+      - cmd: rm -rf schema
 
   clippy:
     desc: Runs clippy for all targets
