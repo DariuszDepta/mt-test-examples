@@ -2,7 +2,7 @@ use cosmwasm_std::Empty;
 use counter::contract::{CounterQuery, CounterResponse};
 use cw_multi_test::{App, Contract, ContractWrapper, Executor, IntoAddr};
 
-fn contract() -> Box<dyn Contract<Empty>> {
+fn counter_contract() -> Box<dyn Contract<Empty>> {
     Box::new(ContractWrapper::new_with_empty(
         counter::contract::execute,
         counter::contract::instantiate,
@@ -14,7 +14,7 @@ fn contract() -> Box<dyn Contract<Empty>> {
 fn instantiating_should_work() {
     let mut app = App::default();
 
-    let code_id = app.store_code(contract());
+    let code_id = app.store_code(counter_contract());
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -33,7 +33,7 @@ fn instantiating_should_work() {
 fn incrementing_should_work() {
     let mut app = App::default();
 
-    let code_id = app.store_code(contract());
+    let code_id = app.store_code(counter_contract());
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -55,7 +55,7 @@ fn incrementing_should_work() {
 fn incrementing_should_stop_at_255() {
     let mut app = App::default();
 
-    let code_id = app.store_code(contract());
+    let code_id = app.store_code(counter_contract());
     let owner = "owner".into_addr();
 
     let contract_addr = app

@@ -9,7 +9,6 @@ use serde::{Deserialize, Serialize};
 const COUNTER: Item<u8> = Item::new("counter");
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
 pub enum CounterQuery {
     Counter,
 }
