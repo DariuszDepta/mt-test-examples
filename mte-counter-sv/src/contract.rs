@@ -6,11 +6,11 @@ use sylvia::types::{ExecCtx, InstantiateCtx, QueryCtx};
 
 #[cw_serde]
 pub struct CountResponse {
-    pub count: u64,
+    pub count: u8,
 }
 
 pub struct CounterContract {
-    pub count: Item<u64>,
+    pub count: Item<u8>,
 }
 
 #[cfg_attr(not(feature = "library"), sylvia::entry_points)]
@@ -28,7 +28,7 @@ impl CounterContract {
 
     #[sv::msg(exec)]
     fn increment(&self, ctx: ExecCtx) -> StdResult<Response> {
-        self.count.update(ctx.deps.storage, |count| -> StdResult<u64> { Ok(count.saturating_add(1)) })?;
+        self.count.update(ctx.deps.storage, |count| -> StdResult<u8> { Ok(count.saturating_add(1)) })?;
         Ok(Response::new())
     }
 
