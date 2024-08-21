@@ -4,6 +4,13 @@ silent: true
 
 tasks:
 
+  before-commit:
+    desc: Run this before committing any changes
+    cmds:
+      - cmd: cargo clean
+      - cmd: rm -rf Cargo.lock
+      - cmd: cargo +stable build
+
   build:
     desc: Builds in debug mode
     cmds:
@@ -20,6 +27,11 @@ tasks:
     cmds:
       - cmd: cargo +stable clippy --all-targets
 
+  cov:
+    desc: Generates code coverage
+    cmds:
+      - cmd: ./coverage.sh
+
   fmt:
     desc: Formats the code
     cmds:
@@ -30,6 +42,11 @@ tasks:
     cmds:
       - cmd: cargo +stable test
 
+  testn:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable nextest run
+
   wasm:
     desc: Builds the Wasm binary
     cmds:
@@ -39,8 +56,3 @@ tasks:
     desc: Builds the Wasm binary in debug mode
     cmds:
       - cmd: cargo build --target wasm32-unknown-unknown --lib
-
-  schema:
-    desc: Builds the schema
-    cmds:
-      - cmd: cargo run --bin schema
