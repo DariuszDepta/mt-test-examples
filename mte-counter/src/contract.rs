@@ -1,19 +1,25 @@
+use cosmwasm_schema::cw_serde;
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 use cosmwasm_std::{
     to_json_binary, Binary, Deps, DepsMut, Empty, Env, MessageInfo, Response, StdError,
 };
 use cw_storage_plus::Item;
-use serde::{Deserialize, Serialize};
 
 const COUNTER: Item<u8> = Item::new("counter");
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cw_serde]
+pub enum CounterMsg {
+    Increment,
+    Decrement,
+}
+
+#[cw_serde]
 pub enum CounterQuery {
     Counter,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[cw_serde]
 pub struct CounterResponse {
     pub value: u8,
 }
@@ -25,7 +31,7 @@ pub fn instantiate(
     _info: MessageInfo,
     _msg: Empty,
 ) -> Result<Response, StdError> {
-    COUNTER.save(deps.storage, &1)?;
+    COUNTER.save(deps.storage, &0)?;
     Ok(Response::default())
 }
 
@@ -34,10 +40,17 @@ pub fn execute(
     deps: DepsMut,
     _env: Env,
     _info: MessageInfo,
-    _msg: Empty,
+    msg: CounterMsg,
 ) -> Result<Response, StdError> {
     if let Some(mut counter) = COUNTER.may_load(deps.storage)? {
-        counter = counter.saturating_add(1);
+        match msg {
+            CounterMsg::Increment => {
+                counter = counter.saturating_add(1);
+            }
+            CounterMsg::Decrement => {
+                counter = counter.saturating_sub(1);
+            }
+        }
         COUNTER.save(deps.storage, &counter)?;
     }
     Ok(Response::default())

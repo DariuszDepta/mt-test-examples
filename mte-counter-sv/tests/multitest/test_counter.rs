@@ -7,7 +7,10 @@ fn instantiating_should_work() {
     let app = App::default();
     let code_id = CodeId::store_code(&app);
 
-    let owner = "owner".into_addr();
+    //let owner = "owner".into_addr();
+
+    let owner = app.app().api().addr_make("owner");
+
     let contract = code_id.instantiate().call(&owner).unwrap();
 
     assert_eq!(1, contract.count().unwrap().count);

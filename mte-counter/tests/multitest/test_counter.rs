@@ -1,5 +1,5 @@
 use cosmwasm_std::Empty;
-use counter::contract::{CounterQuery, CounterResponse};
+use counter::contract::{CounterMsg, CounterQuery, CounterResponse};
 use cw_multi_test::{App, Contract, ContractWrapper, Executor, IntoAddr};
 
 fn counter_contract() -> Box<dyn Contract<Empty>> {
@@ -26,7 +26,7 @@ fn instantiating_should_work() {
         .query_wasm_smart(contract_addr, &CounterQuery::Counter)
         .unwrap();
 
-    assert_eq!(1, res.value);
+    assert_eq!(0, res.value);
 }
 
 #[test]
@@ -40,7 +40,7 @@ fn incrementing_should_work() {
         .instantiate_contract(code_id, owner.clone(), &Empty {}, &[], "counter", None)
         .unwrap();
 
-    app.execute_contract(owner, contract_addr.clone(), &Empty {}, &[])
+    app.execute_contract(owner, contract_addr.clone(), &CounterMsg::Increment, &[])
         .unwrap();
 
     let res: CounterResponse = app
@@ -48,7 +48,7 @@ fn incrementing_should_work() {
         .query_wasm_smart(contract_addr, &CounterQuery::Counter)
         .unwrap();
 
-    assert_eq!(2, res.value);
+    assert_eq!(1, res.value);
 }
 
 #[test]
@@ -63,7 +63,12 @@ fn incrementing_should_stop_at_255() {
         .unwrap();
 
     for _ in 0..300 {
-        app.execute_contract(owner.clone(), contract_addr.clone(), &Empty {}, &[])
+        app.execute_contract(
+            owner.clone(),
+            contract_addr.clone(),
+            &CounterMsg::Increment,
+            &[],
+        )
             .unwrap();
     }
 
