@@ -1,0 +1,45 @@
+version: '3'
+
+silent: true
+
+tasks:
+
+  build:
+    desc: Builds in debug mode
+    cmds:
+      - cmd: cargo +stable build
+
+  clean:
+    desc: Deletes all compilation artifacts
+    cmds:
+      - cmd: cargo clean
+
+  clippy:
+    desc: Runs clippy for all targets
+    cmds:
+      - cmd: cargo +stable clippy --all-targets
+
+  fmt:
+    desc: Formats the code
+    cmds:
+      - cmd: cargo +stable fmt
+
+  test:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable test
+
+  wasm:
+    desc: Builds the Wasm binary
+    cmds:
+      - cmd: cargo build --release --target wasm32-unknown-unknown --lib
+
+  wasm-debug:
+    desc: Builds the Wasm binary in debug mode
+    cmds:
+      - cmd: cargo build --target wasm32-unknown-unknown --lib
+
+  schema:
+    desc: Builds the schema
+    cmds:
+      - cmd: cargo run --bin schema
