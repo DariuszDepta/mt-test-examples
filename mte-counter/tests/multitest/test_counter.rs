@@ -69,7 +69,7 @@ fn incrementing_should_stop_at_255() {
             &CounterMsg::Increment,
             &[],
         )
-            .unwrap();
+        .unwrap();
     }
 
     let res: CounterResponse = app
