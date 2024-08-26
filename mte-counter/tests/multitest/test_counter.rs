@@ -1,5 +1,7 @@
 use cosmwasm_std::Empty;
-use counter::contract::{CounterMsg, CounterQuery, CounterResponse};
+use counter::msg::{
+    CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse,
+};
 use cw_multi_test::{App, Contract, ContractWrapper, Executor, IntoAddr};
 
 fn counter_contract() -> Box<dyn Contract<Empty>> {
@@ -18,12 +20,19 @@ fn instantiating_should_work() {
     let owner = "owner".into_addr();
 
     let contract_addr = app
-        .instantiate_contract(code_id, owner.clone(), &Empty {}, &[], "counter", None)
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Zero,
+            &[],
+            "counter",
+            None,
+        )
         .unwrap();
 
     let res: CounterResponse = app
         .wrap()
-        .query_wasm_smart(contract_addr, &CounterQuery::Counter)
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
         .unwrap();
 
     assert_eq!(0, res.value);
@@ -37,15 +46,27 @@ fn incrementing_should_work() {
     let owner = "owner".into_addr();
 
     let contract_addr = app
-        .instantiate_contract(code_id, owner.clone(), &Empty {}, &[], "counter", None)
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Zero,
+            &[],
+            "counter",
+            None,
+        )
         .unwrap();
 
-    app.execute_contract(owner, contract_addr.clone(), &CounterMsg::Increment, &[])
+    app.execute_contract(
+        owner,
+        contract_addr.clone(),
+        &CounterActionMsg::Inc,
+        &[],
+    )
         .unwrap();
 
     let res: CounterResponse = app
         .wrap()
-        .query_wasm_smart(contract_addr, &CounterQuery::Counter)
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
         .unwrap();
 
     assert_eq!(1, res.value);
@@ -59,22 +80,29 @@ fn incrementing_should_stop_at_255() {
     let owner = "owner".into_addr();
 
     let contract_addr = app
-        .instantiate_contract(code_id, owner.clone(), &Empty {}, &[], "counter", None)
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Zero,
+            &[],
+            "counter",
+            None,
+        )
         .unwrap();
 
     for _ in 0..300 {
         app.execute_contract(
             owner.clone(),
             contract_addr.clone(),
-            &CounterMsg::Increment,
+            &CounterActionMsg::Inc,
             &[],
         )
-        .unwrap();
+            .unwrap();
     }
 
     let res: CounterResponse = app
         .wrap()
-        .query_wasm_smart(contract_addr, &CounterQuery::Counter)
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
         .unwrap();
 
     assert_eq!(255, res.value);
