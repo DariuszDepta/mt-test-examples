@@ -62,7 +62,7 @@ fn incrementing_should_work() {
         &CounterActionMsg::Inc,
         &[],
     )
-        .unwrap();
+    .unwrap();
 
     let res: CounterResponse = app
         .wrap()
@@ -97,7 +97,7 @@ fn incrementing_should_stop_at_255() {
             &CounterActionMsg::Inc,
             &[],
         )
-            .unwrap();
+        .unwrap();
     }
 
     let res: CounterResponse = app
