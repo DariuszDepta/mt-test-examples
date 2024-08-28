@@ -1,13 +1,8 @@
-use cosmwasm_schema::cw_serde;
+use crate::msg::{CounterInitMsg, CounterResponse};
 use cosmwasm_std::{Response, StdResult};
 use cw_storage_plus::Item;
 use sylvia::contract;
 use sylvia::types::{ExecCtx, InstantiateCtx, QueryCtx};
-
-#[cw_serde]
-pub struct CounterResponse {
-    pub count: u8,
-}
 
 pub struct CounterContract {
     pub count: Item<u8>,
@@ -23,17 +18,35 @@ impl CounterContract {
     }
 
     #[sv::msg(instantiate)]
-    fn instantiate(&self, ctx: InstantiateCtx) -> StdResult<Response> {
-        self.count.save(ctx.deps.storage, &1)?;
+    fn zero(&self, ctx: InstantiateCtx, msg: CounterInitMsg) -> StdResult<Response> {
+        match msg {
+            CounterInitMsg::Zero => self.count.save(ctx.deps.storage, &0)?,
+            CounterInitMsg::Set(value) => self.count.save(ctx.deps.storage, &value)?,
+        }
         Ok(Response::new())
     }
 
     #[sv::msg(exec)]
-    fn increment(&self, ctx: ExecCtx) -> StdResult<Response> {
+    fn inc(&self, ctx: ExecCtx) -> StdResult<Response> {
         self.count
             .update(ctx.deps.storage, |count| -> StdResult<u8> {
                 Ok(count.saturating_add(1))
             })?;
+        Ok(Response::new())
+    }
+
+    #[sv::msg(exec)]
+    fn dec(&self, ctx: ExecCtx) -> StdResult<Response> {
+        self.count
+            .update(ctx.deps.storage, |count| -> StdResult<u8> {
+                Ok(count.saturating_sub(1))
+            })?;
+        Ok(Response::new())
+    }
+
+    #[sv::msg(exec)]
+    fn set(&self, ctx: ExecCtx, value: u8) -> StdResult<Response> {
+        self.count.save(ctx.deps.storage, &value)?;
         Ok(Response::new())
     }
 

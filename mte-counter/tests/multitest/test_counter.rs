@@ -13,7 +13,7 @@ fn counter_contract() -> Box<dyn Contract<Empty>> {
 }
 
 #[test]
-fn instantiating_should_work() {
+fn instantiating_with_zero_should_work() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -36,6 +36,32 @@ fn instantiating_should_work() {
         .unwrap();
 
     assert_eq!(0, res.value);
+}
+
+#[test]
+fn instantiating_with_value_should_work() {
+    let mut app = App::default();
+
+    let code_id = app.store_code(counter_contract());
+    let owner = "owner".into_addr();
+
+    let contract_addr = app
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Set(12),
+            &[],
+            "counter",
+            None,
+        )
+        .unwrap();
+
+    let res: CounterResponse = app
+        .wrap()
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
+        .unwrap();
+
+    assert_eq!(12, res.value);
 }
 
 #[test]
@@ -62,7 +88,7 @@ fn incrementing_should_work() {
         &CounterActionMsg::Inc,
         &[],
     )
-    .unwrap();
+        .unwrap();
 
     let res: CounterResponse = app
         .wrap()
@@ -73,7 +99,7 @@ fn incrementing_should_work() {
 }
 
 #[test]
-fn incrementing_should_stop_at_255() {
+fn incrementing_should_stop_at_maximum() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -83,21 +109,21 @@ fn incrementing_should_stop_at_255() {
         .instantiate_contract(
             code_id,
             owner.clone(),
-            &CounterInitMsg::Zero,
+            &CounterInitMsg::Set(250),
             &[],
             "counter",
             None,
         )
         .unwrap();
 
-    for _ in 0..300 {
+    for _ in 1..=10 {
         app.execute_contract(
             owner.clone(),
             contract_addr.clone(),
             &CounterActionMsg::Inc,
             &[],
         )
-        .unwrap();
+            .unwrap();
     }
 
     let res: CounterResponse = app
@@ -106,4 +132,108 @@ fn incrementing_should_stop_at_255() {
         .unwrap();
 
     assert_eq!(255, res.value);
+}
+
+#[test]
+fn decrementing_should_work() {
+    let mut app = App::default();
+
+    let code_id = app.store_code(counter_contract());
+    let owner = "owner".into_addr();
+
+    let contract_addr = app
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Set(126),
+            &[],
+            "counter",
+            None,
+        )
+        .unwrap();
+
+    app.execute_contract(
+        owner,
+        contract_addr.clone(),
+        &CounterActionMsg::Dec,
+        &[],
+    )
+        .unwrap();
+
+    let res: CounterResponse = app
+        .wrap()
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
+        .unwrap();
+
+    assert_eq!(125, res.value);
+}
+
+#[test]
+fn decrementing_should_stop_at_minimum() {
+    let mut app = App::default();
+
+    let code_id = app.store_code(counter_contract());
+    let owner = "owner".into_addr();
+
+    let contract_addr = app
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Set(5),
+            &[],
+            "counter",
+            None,
+        )
+        .unwrap();
+
+    for _ in 1..=10 {
+        app.execute_contract(
+            owner.clone(),
+            contract_addr.clone(),
+            &CounterActionMsg::Dec,
+            &[],
+        )
+            .unwrap();
+    }
+
+    let res: CounterResponse = app
+        .wrap()
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
+        .unwrap();
+
+    assert_eq!(0, res.value);
+}
+
+#[test]
+fn setting_value_should_work() {
+    let mut app = App::default();
+
+    let code_id = app.store_code(counter_contract());
+    let owner = "owner".into_addr();
+
+    let contract_addr = app
+        .instantiate_contract(
+            code_id,
+            owner.clone(),
+            &CounterInitMsg::Set(5),
+            &[],
+            "counter",
+            None,
+        )
+        .unwrap();
+
+    app.execute_contract(
+        owner.clone(),
+        contract_addr.clone(),
+        &CounterActionMsg::Set(126),
+        &[],
+    )
+        .unwrap();
+
+    let res: CounterResponse = app
+        .wrap()
+        .query_wasm_smart(contract_addr, &CounterQuery::Value)
+        .unwrap();
+
+    assert_eq!(126, res.value);
 }
