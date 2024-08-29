@@ -138,8 +138,6 @@ fn incrementing_should_stop_at_maximum() {
     assert_eq!(255, res.value);
 }
 
-/*
-
 #[test]
 fn decrementing_should_work() {
     use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
@@ -247,5 +245,3 @@ fn setting_value_should_work() {
 
     assert_eq!(126, res.value);
 }
-
-*/
