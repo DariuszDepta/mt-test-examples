@@ -10,7 +10,6 @@ fn counter_contract() -> Box<dyn Contract<Empty>> {
 }
 
 #[test]
-#[ignore]
 fn instantiating_with_zero_should_work() {
     use counter::msg::{CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
@@ -40,7 +39,6 @@ fn instantiating_with_zero_should_work() {
 }
 
 #[test]
-#[ignore]
 fn instantiating_with_value_should_work() {
     use counter::msg::{CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
@@ -70,7 +68,6 @@ fn instantiating_with_value_should_work() {
 }
 
 #[test]
-#[ignore]
 fn incrementing_should_work() {
     use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
@@ -103,7 +100,6 @@ fn incrementing_should_work() {
 }
 
 #[test]
-#[ignore]
 fn incrementing_should_stop_at_maximum() {
     use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
@@ -143,7 +139,6 @@ fn incrementing_should_stop_at_maximum() {
 }
 
 #[test]
-#[ignore]
 fn decrementing_should_work() {
     use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
@@ -176,7 +171,6 @@ fn decrementing_should_work() {
 }
 
 #[test]
-#[ignore]
 fn decrementing_should_stop_at_minimum() {
     use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
@@ -216,7 +210,6 @@ fn decrementing_should_stop_at_minimum() {
 }
 
 #[test]
-#[ignore]
 fn setting_value_should_work() {
     use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
     use cw_multi_test::{App, Executor, IntoAddr};
