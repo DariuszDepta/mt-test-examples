@@ -1,12 +1,8 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 
-use crate::msg::{
-    CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse,
-};
-use cosmwasm_std::{
-    to_json_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response, StdError,
-};
+use crate::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
+use cosmwasm_std::{to_json_binary, Binary, Deps, DepsMut, Env, MessageInfo, Response, StdError};
 use cw_storage_plus::Item;
 
 const COUNTER: Item<u8> = Item::new("value");
@@ -46,11 +42,7 @@ pub fn execute(
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn query(
-    deps: Deps,
-    _env: Env,
-    msg: CounterQuery,
-) -> Result<Binary, StdError> {
+pub fn query(deps: Deps, _env: Env, msg: CounterQuery) -> Result<Binary, StdError> {
     match msg {
         CounterQuery::Value => Ok(to_json_binary(&CounterResponse {
             value: COUNTER.may_load(deps.storage).unwrap().unwrap(),

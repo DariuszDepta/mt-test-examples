@@ -1,8 +1,5 @@
 use cosmwasm_std::Empty;
-use counter::msg::{
-    CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse,
-};
-use cw_multi_test::{App, Contract, ContractWrapper, Executor, IntoAddr};
+use cw_multi_test::{Contract, ContractWrapper};
 
 fn counter_contract() -> Box<dyn Contract<Empty>> {
     Box::new(ContractWrapper::new_with_empty(
@@ -14,6 +11,9 @@ fn counter_contract() -> Box<dyn Contract<Empty>> {
 
 #[test]
 fn instantiating_with_zero_should_work() {
+    use counter::msg::{CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -40,6 +40,9 @@ fn instantiating_with_zero_should_work() {
 
 #[test]
 fn instantiating_with_value_should_work() {
+    use counter::msg::{CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -66,6 +69,9 @@ fn instantiating_with_value_should_work() {
 
 #[test]
 fn incrementing_should_work() {
+    use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -82,12 +88,7 @@ fn incrementing_should_work() {
         )
         .unwrap();
 
-    app.execute_contract(
-        owner,
-        contract_addr.clone(),
-        &CounterActionMsg::Inc,
-        &[],
-    )
+    app.execute_contract(owner, contract_addr.clone(), &CounterActionMsg::Inc, &[])
         .unwrap();
 
     let res: CounterResponse = app
@@ -100,6 +101,9 @@ fn incrementing_should_work() {
 
 #[test]
 fn incrementing_should_stop_at_maximum() {
+    use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -123,7 +127,7 @@ fn incrementing_should_stop_at_maximum() {
             &CounterActionMsg::Inc,
             &[],
         )
-            .unwrap();
+        .unwrap();
     }
 
     let res: CounterResponse = app
@@ -136,6 +140,9 @@ fn incrementing_should_stop_at_maximum() {
 
 #[test]
 fn decrementing_should_work() {
+    use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -152,12 +159,7 @@ fn decrementing_should_work() {
         )
         .unwrap();
 
-    app.execute_contract(
-        owner,
-        contract_addr.clone(),
-        &CounterActionMsg::Dec,
-        &[],
-    )
+    app.execute_contract(owner, contract_addr.clone(), &CounterActionMsg::Dec, &[])
         .unwrap();
 
     let res: CounterResponse = app
@@ -170,6 +172,9 @@ fn decrementing_should_work() {
 
 #[test]
 fn decrementing_should_stop_at_minimum() {
+    use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -193,7 +198,7 @@ fn decrementing_should_stop_at_minimum() {
             &CounterActionMsg::Dec,
             &[],
         )
-            .unwrap();
+        .unwrap();
     }
 
     let res: CounterResponse = app
@@ -206,6 +211,9 @@ fn decrementing_should_stop_at_minimum() {
 
 #[test]
 fn setting_value_should_work() {
+    use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery, CounterResponse};
+    use cw_multi_test::{App, Executor, IntoAddr};
+
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
@@ -228,7 +236,7 @@ fn setting_value_should_work() {
         &CounterActionMsg::Set(126),
         &[],
     )
-        .unwrap();
+    .unwrap();
 
     let res: CounterResponse = app
         .wrap()
