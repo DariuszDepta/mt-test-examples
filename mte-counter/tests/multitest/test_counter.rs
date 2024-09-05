@@ -15,15 +15,16 @@ fn instantiating_with_zero_should_work() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
         .instantiate_contract(
             code_id,
-            owner.clone(),
+            owner,
             &CounterInitMsg::Zero,
             &[],
-            "counter",
+            "counter-label",
             None,
         )
         .unwrap();
@@ -41,15 +42,16 @@ fn instantiating_with_value_should_work() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
         .instantiate_contract(
             code_id,
-            owner.clone(),
+            owner,
             &CounterInitMsg::Set(12),
             &[],
-            "counter",
+            "counter-label",
             None,
         )
         .unwrap();
@@ -67,6 +69,7 @@ fn incrementing_should_work() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -75,7 +78,7 @@ fn incrementing_should_work() {
             owner.clone(),
             &CounterInitMsg::Zero,
             &[],
-            "counter",
+            "counter-contract",
             None,
         )
         .unwrap();
@@ -96,6 +99,7 @@ fn incrementing_should_stop_at_maximum() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -132,6 +136,7 @@ fn decrementing_should_work() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -140,7 +145,7 @@ fn decrementing_should_work() {
             owner.clone(),
             &CounterInitMsg::Set(126),
             &[],
-            "counter",
+            "counter-label",
             None,
         )
         .unwrap();
@@ -161,6 +166,7 @@ fn decrementing_should_stop_at_minimum() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -169,7 +175,7 @@ fn decrementing_should_stop_at_minimum() {
             owner.clone(),
             &CounterInitMsg::Set(5),
             &[],
-            "counter",
+            "counter-label",
             None,
         )
         .unwrap();
@@ -197,6 +203,7 @@ fn setting_value_should_work() {
     let mut app = App::default();
 
     let code_id = app.store_code(counter_contract());
+
     let owner = "owner".into_addr();
 
     let contract_addr = app
@@ -205,13 +212,13 @@ fn setting_value_should_work() {
             owner.clone(),
             &CounterInitMsg::Set(5),
             &[],
-            "counter",
+            "counter-label",
             None,
         )
         .unwrap();
 
     app.execute_contract(
-        owner.clone(),
+        owner,
         contract_addr.clone(),
         &CounterActionMsg::Set(126),
         &[],
