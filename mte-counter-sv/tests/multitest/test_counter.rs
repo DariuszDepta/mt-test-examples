@@ -6,9 +6,11 @@ use sylvia::multitest::App;
 #[test]
 fn instantiating_with_zero_should_work() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Zero)
         .call(&owner)
@@ -20,9 +22,11 @@ fn instantiating_with_zero_should_work() {
 #[test]
 fn instantiating_with_value_should_work() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Set(12))
         .call(&owner)
@@ -34,9 +38,11 @@ fn instantiating_with_value_should_work() {
 #[test]
 fn incrementing_should_work() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Zero)
         .call(&owner)
@@ -50,9 +56,11 @@ fn incrementing_should_work() {
 #[test]
 fn incrementing_should_stop_at_maximum() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Set(250))
         .call(&owner)
@@ -68,9 +76,11 @@ fn incrementing_should_stop_at_maximum() {
 #[test]
 fn decrementing_should_work() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Set(126))
         .call(&owner)
@@ -84,9 +94,11 @@ fn decrementing_should_work() {
 #[test]
 fn decrementing_should_stop_at_minimum() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Set(5))
         .call(&owner)
@@ -102,9 +114,11 @@ fn decrementing_should_stop_at_minimum() {
 #[test]
 fn setting_value_should_work() {
     let app = App::default();
+
     let code_id = CodeId::store_code(&app);
 
     let owner = "owner".into_addr();
+
     let contract = code_id
         .instantiate(CounterInitMsg::Set(5))
         .call(&owner)
