@@ -161,8 +161,6 @@ fn decrementing_should_work() {
     assert_eq!(125, res.value);
 }
 
-/*
-
 #[test]
 fn decrementing_should_stop_at_minimum() {
     let mut app = App::default();
@@ -199,6 +197,8 @@ fn decrementing_should_stop_at_minimum() {
 
     assert_eq!(0, res.value);
 }
+
+/*
 
 #[test]
 fn setting_value_should_work() {
