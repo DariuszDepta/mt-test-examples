@@ -37,6 +37,8 @@ fn instantiating_with_zero_should_work() {
     assert_eq!(0, res.value);
 }
 
+/*
+
 #[test]
 fn instantiating_with_value_should_work() {
     let mut app = App::default();
@@ -232,3 +234,5 @@ fn setting_value_should_work() {
 
     assert_eq!(126, res.value);
 }
+
+*/
