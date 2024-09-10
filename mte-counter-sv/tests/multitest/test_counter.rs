@@ -53,8 +53,6 @@ fn incrementing_should_work() {
     assert_eq!(1, contract.count().unwrap().count);
 }
 
-/*
-
 #[test]
 fn incrementing_should_stop_at_maximum() {
     let app = App::default();
@@ -74,6 +72,8 @@ fn incrementing_should_stop_at_maximum() {
 
     assert_eq!(255, contract.count().unwrap().count);
 }
+
+/*
 
 #[test]
 fn decrementing_should_work() {
