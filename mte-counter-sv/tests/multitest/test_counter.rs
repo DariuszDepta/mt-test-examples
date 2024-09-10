@@ -35,8 +35,6 @@ fn instantiating_with_value_should_work() {
     assert_eq!(12, contract.count().unwrap().count);
 }
 
-/*
-
 #[test]
 fn incrementing_should_work() {
     let app = App::default();
@@ -54,6 +52,8 @@ fn incrementing_should_work() {
 
     assert_eq!(1, contract.count().unwrap().count);
 }
+
+/*
 
 #[test]
 fn incrementing_should_stop_at_maximum() {
