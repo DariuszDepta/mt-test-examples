@@ -19,8 +19,6 @@ fn instantiating_with_zero_should_work() {
     assert_eq!(0, contract.count().unwrap().count);
 }
 
-/*
-
 #[test]
 fn instantiating_with_value_should_work() {
     let app = App::default();
@@ -36,6 +34,8 @@ fn instantiating_with_value_should_work() {
 
     assert_eq!(12, contract.count().unwrap().count);
 }
+
+/*
 
 #[test]
 fn incrementing_should_work() {
