@@ -111,8 +111,6 @@ fn decrementing_should_stop_at_minimum() {
     assert_eq!(0, contract.count().unwrap().count);
 }
 
-/*
-
 #[test]
 fn setting_value_should_work() {
     let app = App::default();
@@ -130,4 +128,3 @@ fn setting_value_should_work() {
 
     assert_eq!(125, contract.count().unwrap().count);
 }
-*/
