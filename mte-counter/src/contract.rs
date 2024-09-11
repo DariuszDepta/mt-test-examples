@@ -45,7 +45,7 @@ pub fn execute(
 pub fn query(deps: Deps, _env: Env, msg: CounterQuery) -> Result<Binary, StdError> {
     match msg {
         CounterQuery::Value => Ok(to_json_binary(&CounterResponse {
-            value: COUNTER.may_load(deps.storage).unwrap().unwrap(),
+            value: COUNTER.may_load(deps.storage)?.unwrap(),
         })?),
     }
 }
