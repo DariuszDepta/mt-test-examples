@@ -8,5 +8,5 @@ pub enum CounterInitMsg {
 
 #[cw_serde]
 pub struct CounterResponse {
-    pub count: u8,
+    pub value: u8,
 }

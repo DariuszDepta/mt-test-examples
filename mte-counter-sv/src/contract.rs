@@ -52,7 +52,7 @@ impl CounterContract {
 
     #[sv::msg(query)]
     fn count(&self, ctx: QueryCtx) -> StdResult<CounterResponse> {
-        let count = self.count.load(ctx.deps.storage)?;
-        Ok(CounterResponse { count })
+        let value = self.count.load(ctx.deps.storage)?;
+        Ok(CounterResponse { value })
     }
 }
