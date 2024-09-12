@@ -1,5 +1,5 @@
 #[test]
-fn creating_address_using_mock_api_should_work() {
+fn creating_address_with_default_prefix_should_work() {
     use cosmwasm_std::testing::MockApi;
 
     let addr = MockApi::default().addr_make("owner");
@@ -10,7 +10,7 @@ fn creating_address_using_mock_api_should_work() {
 }
 
 #[test]
-fn creating_address_with_prefix_using_mock_api_should_work() {
+fn creating_address_with_custom_prefix_should_work() {
     use cosmwasm_std::testing::MockApi;
 
     let addr = MockApi::default().with_prefix("juno").addr_make("owner");
