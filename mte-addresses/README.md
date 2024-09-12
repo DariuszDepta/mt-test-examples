@@ -24,7 +24,7 @@ $ cargo test
 test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
-### MultiTest 2.0 | CosmWasm 2.0
+### MultiTest 2.0.x | CosmWasm 2.0.x
 
 ```toml
 [dependencies]
@@ -42,14 +42,14 @@ $ cargo test
 test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
-### MultiTest 1.2.0 | CosmWasm 1.5.5
+### MultiTest 1.2.x | CosmWasm 1.x
 
 ```toml
 [dependencies]
-cosmwasm-std = "1.5.5"
+cosmwasm-std = "1"
 
 [dev-dependencies]
-cw-multi-test = { version = "1.2.0", features = ["cosmwasm_1_4"] }
+cw-multi-test = { version = "1.2", features = ["cosmwasm_1_4"] }
 ```
 
 ```shell
