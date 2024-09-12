@@ -4,6 +4,13 @@ silent: true
 
 tasks:
 
+  all:
+    desc: Performs clen and test
+    cmds:
+      - cmd: cargo clean
+      - cmd: cargo update
+      - cmd: cargo test
+
   build:
     desc: Builds in debug mode
     cmds:
