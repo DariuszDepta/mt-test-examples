@@ -1,0 +1,15 @@
+syntax = "proto3";
+package mte.mte;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "mte/x/mte/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "mte/x/mte/Params";
+  option (gogoproto.equal) = true;
+
+  
+}

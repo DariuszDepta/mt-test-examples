@@ -49,3 +49,25 @@ Your uname -a:                  x86_64 GNU/Linux
 Your cwd:                       (hidden)
 Is on Gitpod:                   false
 ```
+
+### Scaffold a chain
+
+Stay inside the directory where th project **mt-test-examples** was cloned.
+
+Scaffold a new chain:
+
+```shell
+$ ignite scaffold chain mte
+````
+
+_Output:_
+
+```text
+⭐️ Successfully created a new blockchain 'sevdays'.
+👉 Get started with the following commands:
+
+ % cd sevdays
+ % ignite chain serve
+
+Documentation: https://docs.ignite.com
+```
