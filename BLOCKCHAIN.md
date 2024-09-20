@@ -191,3 +191,105 @@ Output:
 ## Adding a `wasm` module to the chain
 
 We are basing on this tutorial: [Ignite CLI Wasm App].
+
+Install Ignite CLI Wasm app:
+
+```shell
+$ ignite app install -g github.com/ignite/apps/wasm
+```
+
+Output:
+
+```text
+✔ Done loading apps
+🎉 Installed github.com/ignite/apps/wasm
+```
+
+Add Wasm support
+
+```shell
+$ ignite wasm add
+```
+
+Output:
+
+```text
+create app/ante.go
+modify app/app.go
+modify app/app_config.go
+modify app/ibc.go
+create app/wasm.go
+modify cmd/mted/cmd/commands.go
+
+🎉 CosmWasm added (`[some path]/mte`).
+```
+
+Start the chain:
+
+```shell
+$ ignite chain serve
+```
+
+Output:
+
+```text
+  cannot build app:                                                                   
+                                                                                      
+  error while running command go build -o /home/confio/go/bin/mted -mod readonly      
+  -tags  -ldflags -X github.com/cosmos/cosmos-sdk/version.Name=Mte -X                 
+  github.com/cosmos/cosmos-sdk/version.AppName=mted -X                                
+  github.com/cosmos/cosmos-sdk/version.Version= -X                                    
+  github.com/cosmos/cosmos-sdk/version.Commit=ae6413a442814fe8adb395ea7b3f8917cc7b87f6
+  -X github.com/cosmos/cosmos-sdk/version.BuildTags= -X                               
+  mte/cmd/mted/cmd.ChainID=mte -gcflags all=-N -l .: # mte/app                        
+  ../../app/ibc.go:10:2: "github.com/cosmos/cosmos-sdk/types/module" imported and     
+  not used                                                                            
+  : exit status 1                                                                     
+  
+  Waiting for a fix before retrying...
+  
+  Press the 'q' key to stop serve
+```
+
+Press `q` to stop the chain.
+
+Output:
+
+```text
+  💿 Genesis state saved in /home/user/.ignite/local-chains/mte/exported_genesis.json
+  
+  𝓲 Stopped
+  
+  💬 Survey: https://bit.ly/3WZS2uS
+```
+
+Remove the unused import:
+
+```shell
+$ sed -i '10d' app/ibc.go
+```
+
+Start the chain again:
+
+```shell
+$ ignite chain serve
+```
+
+Output:
+
+```text
+  Blockchain is running
+  
+  👤 alice's account address: cosmos1243r4wftmxufaxqh6lar4hgf38j8405kh2ptyd
+  👤 bob's account address: cosmos1u7cgk2k0cza2s8zfmwmk7sc7mq3y8vevfdwuez
+  
+  🌍 Tendermint node: http://0.0.0.0:26657
+  🌍 Blockchain API: http://0.0.0.0:1317
+  🌍 Token faucet: http://0.0.0.0:4500
+  
+  ⋆ Data directory: /home/confio/.mte
+  ⋆ App binary: /home/user/go/bin/mted
+  
+  Press the 'q' key to stop serve
+```
+
