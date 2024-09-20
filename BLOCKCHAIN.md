@@ -98,7 +98,7 @@ Output:
   🌍 Blockchain API: http://0.0.0.0:1317
   🌍 Token faucet: http://0.0.0.0:4500
   
-  ⋆ Data directory: /home/confio/.mte
+  ⋆ Data directory: /home/user/.mte
   ⋆ App binary: /home/user/go/bin/mted
   
   Press the 'q' key to stop serve
@@ -134,7 +134,7 @@ Output:
   🌍 Blockchain API: http://0.0.0.0:1317
   🌍 Token faucet: http://0.0.0.0:4500
   
-  ⋆ Data directory: /home/confio/.mte
+  ⋆ Data directory: /home/user/.mte
   ⋆ App binary: /home/user/go/bin/mted
   
   Press the 'q' key to stop serve
@@ -235,7 +235,7 @@ Output:
 ```text
   cannot build app:                                                                   
                                                                                       
-  error while running command go build -o /home/confio/go/bin/mted -mod readonly      
+  error while running command go build -o /home/user/go/bin/mted -mod readonly      
   -tags  -ldflags -X github.com/cosmos/cosmos-sdk/version.Name=Mte -X                 
   github.com/cosmos/cosmos-sdk/version.AppName=mted -X                                
   github.com/cosmos/cosmos-sdk/version.Version= -X                                    
@@ -287,9 +287,68 @@ Output:
   🌍 Blockchain API: http://0.0.0.0:1317
   🌍 Token faucet: http://0.0.0.0:4500
   
-  ⋆ Data directory: /home/confio/.mte
+  ⋆ Data directory: /home/user/.mte
   ⋆ App binary: /home/user/go/bin/mted
   
   Press the 'q' key to stop serve
 ```
 
+Press `q` to stop the chain.
+
+Output:
+
+```text
+✘ panic: collections: not found: key 'no_key' of type github.com/cosmos/gogoproto/cosmwasm.wasm.v1.Params                                                                                                    
+                                                                                                                                                                                                           
+goroutine 109 [running]:                                                                                                                                                                                   
+github.com/CosmWasm/wasmd/x/wasm/keeper.Keeper.GetParams({{0x59866e0, 0xc001450be0}, {0x59fc3a8, 0xc000bffc80}, {0x59a02c0, 0xc0024f6640}, {0x59861a0, 0xc002701a30}, {0x59858e0, 0xc002706978}, ...}, ...)
+        /home/user/go/pkg/mod/github.com/!cosm!wasm/wasmd@v0.50.0/x/wasm/keeper/keeper.go:124 +0x252                                                                                                             
+github.com/CosmWasm/wasmd/x/wasm/keeper.ExportGenesis({{0x59c2348, 0x7536ea0}, {0x59db008, 0xc0029a7ac0}, {{0x0, 0x0}, {0x0, 0x0}, 0x139, {0x0, ...}, ...}, ...}, ...)                                     
+        /home/user/go/pkg/mod/github.com/!cosm!wasm/wasmd@v0.50.0/x/wasm/keeper/genesis.go:89 +0x106                                                                                                             
+github.com/CosmWasm/wasmd/x/wasm.AppModule.ExportGenesis({{}, {0x59fc3a8, 0xc000bffc80}, 0xc000b32d00, {0x5985960, 0xc001317700}, {0x59a02c0, 0xc0024f6a00}, {0x7f1430968760, 0xc000aba960}, ...}, ...)    
+        /home/user/go/pkg/mod/github.com/!cosm!wasm/wasmd@v0.50.0/x/wasm/module.go:194 +0x7b                                                                                                                     
+github.com/cosmos/cosmos-sdk/types/module.(*Manager).ExportGenesisForModules.func3({0x7f142ebca310, 0xc002718230}, 0xc0021b2380)                                                                           
+        /home/user/go/pkg/mod/github.com/cosmos/cosmos-sdk@v0.50.9/types/module/module.go:584 +0x135                                                                                                             
+created by github.com/cosmos/cosmos-sdk/types/module.(*Manager).ExportGenesisForModules in goroutine 1                                                                                                     
+        /home/user/go/pkg/mod/github.com/cosmos/cosmos-sdk@v0.50.9/types/module/module.go:582 +0xbc9                                                                                                             
+: exit status 2              
+```
+
+This time the chain stopped with an error, to get rid of this, type:
+
+```shell
+$ ignite chain serve --reset-once
+```
+
+Output:
+
+```text
+  Blockchain is running
+  
+  ✔ Added account alice with address cosmos1cy0x6ax4a3je5nsf266xvldcf5qdq7rsps35a0 and mnemonic:
+  treat limit sibling control civil save box talent they memory forward fame scare mimic medal spread venture copper man glory cream minor cradle garment
+  
+  ✔ Added account bob with address cosmos17lrcp5h9q37pvms2gm7mnln6kqvugjdajrgen5 and mnemonic:
+  saddle drop bonus panel pioneer front logic belt often educate distance melt craft pave rate cabbage paddle light charge solution punch grief trouble hover
+  
+  🌍 Tendermint node: http://0.0.0.0:26657
+  🌍 Blockchain API: http://0.0.0.0:1317
+  🌍 Token faucet: http://0.0.0.0:4500
+  
+  ⋆ Data directory: /home/user/.mte
+  ⋆ App binary: /home/user/go/bin/mted
+  
+  Press the 'q' key to stop serve
+```
+
+Press `q` to stop the chain.
+
+Output:
+
+```text
+  💿 Genesis state saved in /home/user/.ignite/local-chains/mte/exported_genesis.json
+  
+  𝓲 Stopped
+  
+  💬 Survey: https://bit.ly/3WZS2uS
+```
