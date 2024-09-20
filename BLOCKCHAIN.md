@@ -352,3 +352,96 @@ Output:
   
   💬 Survey: https://bit.ly/3WZS2uS
 ```
+
+## Deploying a `counter` smart contract
+
+In the directory [mte-counter](./mte-counter) there is an example **counter** smart contract prepared.
+
+Firstly, we need to compile this contract to Wasm.
+
+```shell
+$ cd mte-counter
+```
+
+In `mte-counter` directory type: 
+
+```shell
+$ cargo wasm
+```
+
+The contract will be compiled to Wasm.
+The compiled binary named `counter.wasm` can be found in directory `target/wasm32-unknown-unknown/release/counter.wasm`.
+
+Start the chain:
+
+```shell
+$ ignite chain serve
+```
+
+Output:
+
+```text
+  Blockchain is running
+  
+  👤 alice's account address: cosmos1cy0x6ax4a3je5nsf266xvldcf5qdq7rsps35a0
+  👤 bob's account address: cosmos17lrcp5h9q37pvms2gm7mnln6kqvugjdajrgen5
+  
+  🌍 Tendermint node: http://0.0.0.0:26657
+  🌍 Blockchain API: http://0.0.0.0:1317
+  🌍 Token faucet: http://0.0.0.0:4500
+  
+  ⋆ Data directory: /home/confio/.mte
+  ⋆ App binary: /home/confio/go/bin/mted
+  
+  Press the 'q' key to stop serve
+```
+
+Open a new terminal and change to `mte-counter` directory.
+
+Store the contract's binary on a chain:
+
+```shell
+$ mted tx wasm store ./target/wasm32-unknown-unknown/release/counter.wasm --from alice --chain-id mte --gas 10000000 -y
+```
+
+Output:
+
+```text
+code: 0
+codespace: ""
+data: ""
+events: []
+gas_used: "0"
+gas_wanted: "0"
+height: "0"
+info: ""
+logs: []
+raw_log: ""
+timestamp: ""
+tx: null
+txhash: B2793CEB1F8B60B726C64BED43DF4744A5C9175201807E633EC9B5D6D7C6448E
+```
+
+Query stored wasm binaries:
+
+```shell
+$ mted q wasm list-code
+```
+
+Output:
+
+```text
+code_infos:
+- code_id: "1"
+  creator: cosmos1cy0x6ax4a3je5nsf266xvldcf5qdq7rsps35a0
+  data_hash: E3999E6E26B67D96B60E07B52AA5D7A7B92B18C90DA3DE9762A002490721CB3F
+  instantiate_permission:
+    addresses: []
+    permission: Everybody
+pagination:
+  next_key: null
+  total: "0"
+```
+
+🎉 Alice has successfully stored a smart contract on the chain!
+
