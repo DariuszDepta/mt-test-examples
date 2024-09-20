@@ -2,6 +2,7 @@
 
 [Go]: https://go.dev/doc/install
 [IgniteCLI]: https://docs.ignite.com/welcome/install
+[Ignite CLI Wasm App]: https://github.com/ignite/apps/tree/main/wasm
 
 ## Overview
 
@@ -186,3 +187,7 @@ Output:
   
   💬 Survey: https://bit.ly/3WZS2uS
 ```
+
+## Adding a `wasm` module to the chain
+
+We are basing on this tutorial: [Ignite CLI Wasm App].
