@@ -54,19 +54,19 @@ Is on Gitpod:                   false
 
 Stay inside the directory where th project **mt-test-examples** was cloned.
 
-Scaffold a new chain:
+Scaffold a new chain named `mte`:
 
 ```shell
 $ ignite scaffold chain mte
 ````
 
-_Output:_
+Output:
 
 ```text
-⭐️ Successfully created a new blockchain 'sevdays'.
+⭐️ Successfully created a new blockchain 'mte'.
 👉 Get started with the following commands:
 
- % cd sevdays
+ % cd mte
  % ignite chain serve
 
 Documentation: https://docs.ignite.com
