@@ -71,3 +71,46 @@ Output:
 
 Documentation: https://docs.ignite.com
 ```
+
+### Run the chain
+
+```shell
+$ cd mte
+```
+
+```shell
+$ ignite chain serve
+```
+
+Output:
+
+```text
+  Blockchain is running
+  
+  ✔ Added account alice with address cosmos1243r4wftmxufaxqh6lar4hgf38j8405kh2ptyd and mnemonic:
+  gap injury stomach clap burst rebuild eye slender urban prize pitch march penalty fine valley afford ankle employ recycle library embark theme october resist
+  
+  ✔ Added account bob with address cosmos1u7cgk2k0cza2s8zfmwmk7sc7mq3y8vevfdwuez and mnemonic:
+  pet symbol stumble pupil strike boat physical dream rocket talk hub save shock mind age illegal aim urban exact own sense below what measure
+  
+  🌍 Tendermint node: http://0.0.0.0:26657
+  🌍 Blockchain API: http://0.0.0.0:1317
+  🌍 Token faucet: http://0.0.0.0:4500
+  
+  ⋆ Data directory: /home/confio/.mte
+  ⋆ App binary: /home/user/go/bin/mted
+  
+  Press the 'q' key to stop serve
+```
+
+Press `q` to stop the chain.
+
+Output:
+
+```text
+  💿 Genesis state saved in /home/user/.ignite/local-chains/mte/exported_genesis.json
+  
+  𝓲 Stopped
+  
+  💬 Survey: https://bit.ly/3WZS2uS
+```
