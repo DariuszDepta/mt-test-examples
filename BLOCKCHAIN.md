@@ -445,3 +445,51 @@ pagination:
 
 🎉 Alice has successfully stored a smart contract on the chain!
 
+Having the `code_id` of the contract, we can check the code details:
+
+```shell
+$ mted q wasm code-info 1
+```
+
+Output:
+
+```text
+code_id: "1"
+creator: cosmos1cy0x6ax4a3je5nsf266xvldcf5qdq7rsps35a0
+data_hash: E3999E6E26B67D96B60E07B52AA5D7A7B92B18C90DA3DE9762A002490721CB3F
+instantiate_permission:
+  addresses: []
+  permission: Everybody
+```
+
+Now, let's instantiate a new contract based on counter contract code with `code_id = 1`.
+This contract instance will be initialized with zero.
+
+```shell
+$ mted tx wasm instantiate 1 '"zero"' --label my-counter --no-admin --from alice --chain-id mte -y
+```
+
+```shell
+$ mted tx wasm instantiate 1 '{"set":21}' --label my-counter --no-admin --from alice --chain-id mte -y
+```
+
+
+
+```shell
+$ mted query tx --type=hash D9E9270B186C86B3325448F8F1FBE2D328BA7678783FBE15F0952D55C28A5825 | yq 'del(.tx.body.messages[0].wasm_byte_code)'
+$ mted query tx --type=hash 23FC4501EF1B473298323DC5B6E376078F791D8348D8FB30E38085B91BF086AA | yq 'del(.tx.body.messages[0].wasm_byte_code)'
+```
+
+
+```shell
+$ mted q wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"value"'
+```
+
+```shell
+$ mted q wasm list-contract-by-code 1
+$ mted q wasm contract-state smart cosmos1suhgf5svhu4usrurvxzlgn54ksxmn8gljarjtxqnapv8kjnp4nrs2zhgh2 '"value"'
+```
+
+```shell
+$ mted tx wasm execute cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"inc"' --from alice --chain-id mte -y
+```

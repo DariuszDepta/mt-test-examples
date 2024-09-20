@@ -1,4 +1,4 @@
-use cosmwasm_schema::cw_serde;
+use cosmwasm_schema::{cw_serde, QueryResponses};
 
 #[cw_serde]
 pub enum CounterInitMsg {
@@ -14,7 +14,9 @@ pub enum CounterActionMsg {
 }
 
 #[cw_serde]
+#[derive(QueryResponses)]
 pub enum CounterQuery {
+    #[returns(CounterResponse)]
     Value,
 }
 
