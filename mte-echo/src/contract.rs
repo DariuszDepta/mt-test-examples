@@ -36,7 +36,7 @@ pub fn execute(
         ExecMessage::Send(addr) => {
             let b = BankMsg::Send {
                 to_address: addr,
-                amount: vec![Coin::new(Uint128::new(10), "token")],
+                amount: vec![Coin::new(Uint128::new(10), "stake")],
             };
             response = response.add_submessage(SubMsg {
                 id: 1,
