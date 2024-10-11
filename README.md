@@ -1,6 +1,6 @@
-### Examples of tests written using
+![mte](./mte.png)
 
-# [CosmWasm MultiTest](https://crates.io/crates/cw-multi-test)
+Examples of tests written using [CosmWasm MultiTest](https://crates.io/crates/cw-multi-test)
 
 |         Example          | Description              |
 |:------------------------:|--------------------------|
