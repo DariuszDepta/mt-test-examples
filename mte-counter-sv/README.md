@@ -2,6 +2,4 @@ MultiTest | Examples
 
 # Counter
 
-## Overview
-
-**Counter** smart contract written in Sylvia.
+Counter smart contract written using Sylvia framework.

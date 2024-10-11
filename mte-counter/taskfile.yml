@@ -53,11 +53,6 @@ tasks:
     cmds:
       - cmd: cargo +stable nextest run
 
-  testn-out:
-    desc: Runs all tests in debug mode
-    cmds:
-      - cmd: cargo +stable nextest run
-
   wasm:
     desc: Builds the Wasm binary
     cmds:
