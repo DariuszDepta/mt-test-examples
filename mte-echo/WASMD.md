@@ -66,6 +66,122 @@ _Output:_
 0.53.0-20-g8b8bb7c9
 ```
 
+Initialize the node with a moniker (name) and a specific chain ID:
+
+```shell
+wasmd init wte --chain-id=wte
+```
+
+_Output:_
+```text
+{
+ "moniker": "wte",
+ "chain_id": "wte",
+ "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
+ "gentxs_dir": ""
+  
+ // many lines follow
+}
+```
+
+Add key pairs for **alice** and **bob** accounts:
+
+```shell
+wasmd keys add alice --keyring-backend=test
+```
+
+_Output:_
+```text
+- address: wasm1luhze876rg7t03wzhu2uvs4c2ynkfr0gwgd4sf
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AmiZBEviMr2jXEceH2/QzJBTYLUnpbEHC1QpAU8DLCsF"}'
+  type: local
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+pride car mask mercy start once ribbon immense sauce used giggle vacuum barrel quick page one cart wear enlist flavor race resource tribe sport
+```
+
+```shell
+wasmd keys add bob --keyring-backend=test
+```
+
+_Output:_
+```text
+- address: wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A/TSQkoX9UfqD2uMXEjpB6X4QvWIb6FJE1dx+ayLque2"}'
+  type: local
+
+
+**Important** write this mnemonic phrase in a safe place.
+It is the only way to recover your account if you ever forget your password.
+
+hunt retire result pact maze bulb wink menu sail forward edit palace review dawn gift drip ignore relief kid day expose panther ticket law
+```
+
+Add genesis accounts with initial balances for **alice** and **bob**:
+
+
+```shell
+wasmd genesis add-genesis-account alice "1000000000000stake" --keyring-backend=test
+```
+
+```shell
+wasmd genesis add-genesis-account bob "1000000000000stake" --keyring-backend=test
+```
+
+Create a genesis transaction for the **alice** account, making **alice** a validator:
+
+```shell
+wasmd genesis gentx alice "250000000stake" --chain-id=wte --amount="250000000stake" --keyring-backend=test
+```
+
+_Output:_
+```text
+Genesis transaction written to "~/.wasmd/config/gentx/gentx-8adbede8821774f5868719c0d1b5e6f9db5d1f36.json"
+```
+
+Collect genesis transactions to finalize the genesis file:
+
+```shell
+wasmd genesis collect-gentxs
+```
+
+_Output:_
+```text
+{
+ "moniker": "wte",
+ "chain_id": "wte",
+ "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
+ "gentxs_dir": "~/.wasmd/config/gentx",
+   
+ // many lines follow
+}
+```
+
+Start the node:
+
+```shell
+wasmd start
+```
+
+_Output:_
+```text
+// many lines
+5:08PM INF finalized block block_app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state num_txs_res=0 num_val_updates=0
+5:08PM INF executed block app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state
+5:08PM INF committed state block_app_hash=F6B5740B8346EB883E557165F780D1A646A73AB4819EA0CEA941B330C003801A height=3 module=state
+5:08PM INF indexed block events height=3 module=txindex
+```
+
+Works! 🚀
+
+
+---
+
 ```shell
 wasmd init wte --chain-id=wte
 wasmd keys add alice --keyring-backend=test
