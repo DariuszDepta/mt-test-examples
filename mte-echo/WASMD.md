@@ -1,6 +1,7 @@
 # WASMD
 
-Running `echo` contract on `wasmd` chain.
+Running `replyer` contract on `wasmd` chain.
+> (TODO) rename this project to `mte-replyer`, it is more adequate name for what the contract does
 
 ```shell
 wasmd init wte --chain-id=wte
