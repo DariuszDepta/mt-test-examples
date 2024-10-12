@@ -7,34 +7,40 @@ Running `replyer` contract on `wasmd` chain.
 
 Mek sure, there is no previous `wasmd` node configured:
 
+_Command:_
 ```shell
 rm -rf ~/.wasmd
 ```
 
 Change current working directory to home:
 
+_Command:_
 ```shell
 cd ~
 ```
 
 Clone the `wasmd` repository:
 
+_Command:_
 ```shell
 git clone https://github.com/CosmWasm/wasmd.git  
 ```
 
 Change current working directory to `wasmd`:
 
+_Command:_
 ```shell
 cd wasmd
 ```
 
 Install `wasmd`:
 
+_Command:_
 ```shell
 make install
 ```
 
+_Output:_
 ```text
 go install -mod=readonly -tags "netgo,ledger" -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=wasm -X github.com/cosmos/cosmos-sdk/version.AppName=wasmd
 -X github.com/cosmos/cosmos-sdk/version.Version=0.53.0-20-g8b8bb7c9 -X github.com/cosmos/cosmos-sdk/version.Commit=8b8bb7c9809cfc10c3e942f730b3cddb3e7a977d
@@ -45,18 +51,22 @@ go: downloading cosmossdk.io/x/tx v0.13.5
 
 Check if `wasmd` is installed and available:
 
+_Command:_
 ```shell
 which wasmd
 ```
 
+_Output:_
 ```text
 /usr/local/bin/wasmd
 ```
 
+_Command:_
 ```shell
 wasmd version
 ```
 
+_Output:_
 ```text
 0.53.0-20-g8b8bb7c9
 ```
