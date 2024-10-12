@@ -194,25 +194,74 @@ wasmd genesis collect-gentxs
 wasmd start
 ```
 
----
+## Compiling the contract
+
+```shell
+cargo build --release --target wasm32-unknown-unknown --lib
+```
+
+_Output:_
+```text
+    // many lines
+
+   Compiling cosmwasm-std v2.1.4
+   Compiling cosmwasm-schema v2.1.4
+   Compiling cw-storage-plus v2.0.0
+   Compiling mte-echo v0.1.0 (~/mte-echo)
+    Finished `release` profile [optimized] target(s) in 13.96s
+```
+
+## Putting the contract on the chain
+
+Store the contract on chain (**alice** is the code owner):
 
 ```shell
 wasmd tx wasm store ./target/wasm32-unknown-unknown/release/mte_echo.wasm --from alice --chain-id wte --gas 10000000 --keyring-backend=test -o json -y
 ```
 
+_Output:_
+```text
+{"height":"0","txhash":"56F8FD29C552D2D594C05D8F694747E41804AE35C9E5E8CFC7EFD0EACCBC0774","codespace":"","code":0,"data":"","raw_log":"","logs":[],"info":"","gas_wanted":"0","gas_used":"0","tx":null,"timestamp":"","events":[]}
+```
+
+Check if the contract code was stored:
+
 ```shell
 wasmd q wasm list-code
 ```
 
-```shell
-wasmd tx wasm instantiate 1 {} --label my-echo-1 --no-admin --from alice --chain-id wte -y -o json --keyring-backend=test
-wasmd tx wasm instantiate 2 {} --label my-echo-1 --no-admin --from alice --chain-id wte -y -o json --keyring-backend=test
+_Output:_
+```text
+code_infos:
+- code_id: "1"
+  creator: wasm1luhze876rg7t03wzhu2uvs4c2ynkfr0gwgd4sf
+  data_hash: 51DD73E52F219D353228721B72E77E5364D413899707174F3538BD4F2D0A8E00
+  instantiate_permission:
+    addresses: []
+    permission: Everybody
+pagination:
+  next_key: null
+  total: "0"
 ```
+
+Instantiate the contract (**alice** is the creator of the instance):
+
+```shell
+wasmd tx wasm instantiate 1 {} --label my-replyer-1 --no-admin --from alice --chain-id wte --keyring-backend=test -o json -y
+```
+
+_Output:_
+```text
+{"height":"0","txhash":"6ACA83C6D928484984B76D75A94B18E87F6C5BC2F2E1CFFDAD8371E06B5B4DDA","codespace":"","code":0,"data":"","raw_log":"","logs":[],"info":"","gas_wanted":"0","gas_used":"0","tx":null,"timestamp":"","events":[]}
+```
+
+Check the list of instantiated contracts:
 
 ```shell
 wasmd q wasm list-contract-by-code 1
 ```
 
+_Output:_
 ```text
 contracts:
 - wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
@@ -221,13 +270,9 @@ pagination:
   total: "0"
 ```
 
-```text
-contracts:
-- wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht
-pagination:
-  next_key: null
-  total: "0"
-```
+---
+
+CONTINUE HERE ON MONDAY:
 
 ```shell
 wasmd q wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"count"'
