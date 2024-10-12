@@ -179,8 +179,7 @@ _Output:_
 
 Works! 🚀
 
-
----
+### Summary
 
 ```shell
 wasmd init wte --chain-id=wte
@@ -193,31 +192,7 @@ wasmd genesis collect-gentxs
 wasmd start
 ```
 
-```text
-- address: wasm1hrh5k5utg4u266ewg2cn6nnsud88yssrja64y9
-  name: alice
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Ajwy4MioSr9wvWNAHICES9J5ns23jH3VSYEI3Emug6vH"}'
-  type: local
-
-
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
-identify steel vague asthma slim cinnamon disorder describe mother neutral train unusual hope solar trumpet naive amused eye behave purse nerve better ring walnut
-```
-
-```text
-- address: wasm1uew8hw9y5z03atcf4zcw3k67g5uk0w7t904p9a
-  name: bob
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AsMC5pR1EK31sryYKm2+nHP5+m/z2plPNh/FEtTEVWP5"}'
-  type: local
-
-
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
-mix rapid keen motion spoil medal detect helmet sphere way stable crop accuse muscle prefer bleak dignity elegant pact announce time festival load eye
-```
+---
 
 ```shell
 wasmd tx wasm store ./target/wasm32-unknown-unknown/release/mte_echo.wasm --from alice --chain-id wte --gas 10000000 --keyring-backend=test -o json -y
