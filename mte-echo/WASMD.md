@@ -5,7 +5,7 @@ Running `replyer` contract on `wasmd` chain.
 
 ## Preparing the `wasmd` node
 
-Mek sure, there is no previous `wasmd` node configured:
+Make sure, there is no previous `wasmd` node configured:
 
 ```shell
 rm -rf ~/.wasmd
