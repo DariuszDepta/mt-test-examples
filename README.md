@@ -5,3 +5,4 @@ Examples of tests written using [CosmWasm MultiTest](https://crates.io/crates/cw
 |         Example          | Description              |
 |:------------------------:|--------------------------|
 | [mte-intro](./mte-intro) | Getting started example. |
+|  [mte-echo](./mte-echo)  | Echo smart contract.     |
