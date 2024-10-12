@@ -1,4 +1,6 @@
-# WASMD version
+# WASMD
+
+Running `echo` contract on `wasmd` chain.
 
 ```shell
 wasmd init wte --chain-id=wte
