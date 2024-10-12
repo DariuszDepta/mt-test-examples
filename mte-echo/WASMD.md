@@ -5,18 +5,22 @@ Running `replyer` contract on `wasmd` chain.
 
 ## Prerequisites
 
-Change current working directory to home, and clone the `wasmd` repository.
+Change current working directory to home:
 
 ```shell
-$ cd ~
+cd ~
 ```
 
-```shell
-$ git clone https://github.com/CosmWasm/wasmd.git  
-```
+Clone the `wasmd` repository:
 
 ```shell
-$ cd wasmd
+git clone https://github.com/CosmWasm/wasmd.git  
+```
+
+Change current working directory to `wasmd`:
+
+```shell
+cd wasmd
 ```
 
 ```shell
