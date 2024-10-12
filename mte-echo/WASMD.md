@@ -3,7 +3,13 @@
 Running `replyer` contract on `wasmd` chain.
 > (TODO) rename this project to `mte-replyer`, it is more adequate name for what the contract does
 
-## Prerequisites
+## Preparing the `wasmd` node
+
+Mek sure, there is no previous `wasmd` node configured:
+
+```shell
+rm -rf ~/.wasmd
+```
 
 Change current working directory to home:
 
@@ -21,6 +27,12 @@ Change current working directory to `wasmd`:
 
 ```shell
 cd wasmd
+```
+
+Install `wasmd`:
+
+```shell
+make install
 ```
 
 ```shell
