@@ -3,6 +3,22 @@
 Running `replyer` contract on `wasmd` chain.
 > (TODO) rename this project to `mte-replyer`, it is more adequate name for what the contract does
 
+## Prerequisites
+
+Change current working directory to home, and clone the `wasmd` repository.
+
+```shell
+$ cd ~
+```
+
+```shell
+$ git clone https://github.com/CosmWasm/wasmd.git  
+```
+
+```shell
+$ cd wasmd
+```
+
 ```shell
 wasmd init wte --chain-id=wte
 wasmd keys add alice --keyring-backend=test
