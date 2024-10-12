@@ -181,6 +181,8 @@ Works! 🚀
 
 ### Summary
 
+All the commands summarized in one place:
+
 ```shell
 wasmd init wte --chain-id=wte
 wasmd keys add alice --keyring-backend=test
