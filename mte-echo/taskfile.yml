@@ -31,7 +31,7 @@ tasks:
     desc: Generates code coverage
     cmds:
       - task: clean
-      - cmd: ./coverage.sh
+      - cmd: ./cov.sh
 
   fmt:
     desc: Formats the code
