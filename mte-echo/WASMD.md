@@ -539,7 +539,7 @@ wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcm
 }
 ```
 
-This is what we wanted to get:
+> The `type_url` in `msg_responses` is **/cosmos.bank.v1beta1.MsgSendResponse** for `Bank::Send` message.
 
 ```json
 {
