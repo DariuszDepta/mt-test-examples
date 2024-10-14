@@ -1,7 +1,7 @@
 # WASMD
 
-Running `replyer` contract on `wasmd` chain.
-> (TODO) rename this project to `mte-replyer`, it is more adequate name for what the contract does
+Running `replier` contract on `wasmd` chain.
+> (TODO) rename this project to `mte-replier`, it is more adequate name for what the contract was designed for
 
 ## Preparing the `wasmd` node
 
