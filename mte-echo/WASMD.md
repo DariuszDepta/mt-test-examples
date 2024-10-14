@@ -227,7 +227,7 @@ _Output:_
 Check if the contract code was stored:
 
 ```shell
-wasmd q wasm list-code
+wasmd query wasm list-code
 ```
 
 _Output:_
@@ -258,10 +258,10 @@ _Output:_
 Check the list of instantiated contracts:
 
 ```shell
-wasmd q wasm list-contract-by-code 1
+wasmd query wasm list-contract-by-code 1
 ```
 
-_Output:_
+Output:
 ```text
 contracts:
 - wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
@@ -272,7 +272,22 @@ pagination:
 
 ---
 
-CONTINUE HERE ON MONDAY:
+## Interacting with the contract
+
+### Querying the contract
+
+```shell
+wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"count"' -o json | jq
+```
+
+Output:
+```json
+{
+  "data": {
+    "count": 0
+  }
+}
+```
 
 ```shell
 wasmd q wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"count"'
