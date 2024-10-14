@@ -35,7 +35,7 @@ Install `wasmd`:
 make install
 ```
 
-_Output:_
+Output:
 ```text
 go install -mod=readonly -tags "netgo,ledger" -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=wasm -X github.com/cosmos/cosmos-sdk/version.AppName=wasmd
 -X github.com/cosmos/cosmos-sdk/version.Version=0.53.0-20-g8b8bb7c9 -X github.com/cosmos/cosmos-sdk/version.Commit=8b8bb7c9809cfc10c3e942f730b3cddb3e7a977d
@@ -50,7 +50,7 @@ Check if `wasmd` is installed and available:
 which wasmd
 ```
 
-_Output:_
+Output:
 ```text
 /usr/local/bin/wasmd
 ```
@@ -61,7 +61,7 @@ Check the version of `wasmd`:
 wasmd version
 ```
 
-_Output:_
+Output:
 ```text
 0.53.0-20-g8b8bb7c9
 ```
@@ -72,7 +72,7 @@ Initialize the node with a moniker (name) and a specific chain ID:
 wasmd init wte --chain-id=wte
 ```
 
-_Output:_
+Output:
 ```text
 {
  "moniker": "wte",
@@ -90,7 +90,7 @@ Add key pairs for **alice** and **bob** accounts:
 wasmd keys add alice --keyring-backend=test
 ```
 
-_Output:_
+Output:
 ```text
 - address: wasm1luhze876rg7t03wzhu2uvs4c2ynkfr0gwgd4sf
   name: alice
@@ -108,7 +108,7 @@ pride car mask mercy start once ribbon immense sauce used giggle vacuum barrel q
 wasmd keys add bob --keyring-backend=test
 ```
 
-_Output:_
+Output:
 ```text
 - address: wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam
   name: bob
@@ -139,7 +139,7 @@ Create a genesis transaction for the **alice** account, making **alice** a valid
 wasmd genesis gentx alice "250000000stake" --chain-id=wte --amount="250000000stake" --keyring-backend=test
 ```
 
-_Output:_
+Output:
 ```text
 Genesis transaction written to "~/.wasmd/config/gentx/gentx-8adbede8821774f5868719c0d1b5e6f9db5d1f36.json"
 ```
@@ -150,7 +150,7 @@ Collect genesis transactions to finalize the genesis file:
 wasmd genesis collect-gentxs
 ```
 
-_Output:_
+Output:
 ```text
 {
  "moniker": "wte",
@@ -168,7 +168,7 @@ Start the node:
 wasmd start
 ```
 
-_Output:_
+Output:
 ```text
 // many lines
 5:08PM INF finalized block block_app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state num_txs_res=0 num_val_updates=0
@@ -200,7 +200,7 @@ wasmd start
 cargo build --release --target wasm32-unknown-unknown --lib
 ```
 
-_Output:_
+Output:
 ```text
     // many lines
 
@@ -219,7 +219,7 @@ Store the contract on chain (**alice** is the code owner):
 wasmd tx wasm store ./target/wasm32-unknown-unknown/release/mte_echo.wasm --from alice --chain-id wte --gas 10000000 --keyring-backend=test -o json -y
 ```
 
-_Output:_
+Output:
 ```text
 {"height":"0","txhash":"56F8FD29C552D2D594C05D8F694747E41804AE35C9E5E8CFC7EFD0EACCBC0774","codespace":"","code":0,"data":"","raw_log":"","logs":[],"info":"","gas_wanted":"0","gas_used":"0","tx":null,"timestamp":"","events":[]}
 ```
@@ -230,7 +230,7 @@ Check if the contract code was stored:
 wasmd query wasm list-code
 ```
 
-_Output:_
+Output:
 ```text
 code_infos:
 - code_id: "1"
@@ -250,7 +250,7 @@ Instantiate the contract (**alice** is the creator of the instance):
 wasmd tx wasm instantiate 1 {} --label my-replyer-1 --no-admin --from alice --chain-id wte --keyring-backend=test -o json -y
 ```
 
-_Output:_
+Output:
 ```text
 {"height":"0","txhash":"6ACA83C6D928484984B76D75A94B18E87F6C5BC2F2E1CFFDAD8371E06B5B4DDA","codespace":"","code":0,"data":"","raw_log":"","logs":[],"info":"","gas_wanted":"0","gas_used":"0","tx":null,"timestamp":"","events":[]}
 ```
@@ -278,7 +278,7 @@ pagination:
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"count"' -o json | jq
 ```
 
-**Output:**
+Output:
 ```json
 {
   "data": {
@@ -291,7 +291,7 @@ wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcm
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"replies"' -o json | jq
 ```
 
-**Output:**
+Output:
 ```json
 {
   "data": {
@@ -304,7 +304,7 @@ wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcm
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"content"' -o json | jq
 ```
 
-**Output:**
+Output:
 ```text
 ERR failure when running app err="rpc error: code = Unknown desc = Error calling the VM: Error executing Wasm: Wasmer runtime error: RuntimeError: Aborted: panicked at src/contract.rs:63:69:\ncalled `Option::unwrap()` on a `None` value: wasmvm error: unknown request"
 ```
@@ -349,6 +349,23 @@ wasmd query bank balances wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam -o json | 
   }
 }
 ```
+
+## Sending tokens to contract
+
+Check the contract address:
+
+```shell
+wasmd query wasm list-contract-by-code 1 -o json | jq '.contracts' 
+```
+
+Output:
+```json
+[
+  "wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d"
+]
+```
+
+Send 100stake from **bob** to 
 
 ```shell
 wasmd tx bank send wasm1hrh5k5utg4u266ewg2cn6nnsud88yssrja64y9 wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d 100stake -o json --chain-id=wte --keyring-backend=test -y
