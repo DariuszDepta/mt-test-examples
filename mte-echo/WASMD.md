@@ -270,8 +270,6 @@ pagination:
   total: "0"
 ```
 
----
-
 ## Interacting with the contract
 
 ### Querying the contract
@@ -280,7 +278,7 @@ pagination:
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"count"' -o json | jq
 ```
 
-Output:
+**Output:**
 ```json
 {
   "data": {
@@ -290,32 +288,66 @@ Output:
 ```
 
 ```shell
-wasmd q wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"count"'
-wasmd q wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"replies"'
+wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"replies"' -o json | jq
+```
+
+**Output:**
+```json
+{
+  "data": {
+    "count": 0
+  }
+}
 ```
 
 ```shell
-wasmd q bank balances wasm1hrh5k5utg4u266ewg2cn6nnsud88yssrja64y9 
+wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"content"' -o json | jq
 ```
 
+**Output:**
 ```text
-balances:
-- amount: "999750000000"
-  denom: stake
-pagination:
-  total: "1"
+ERR failure when running app err="rpc error: code = Unknown desc = Error calling the VM: Error executing Wasm: Wasmer runtime error: RuntimeError: Aborted: panicked at src/contract.rs:63:69:\ncalled `Option::unwrap()` on a `None` value: wasmvm error: unknown request"
 ```
+
+
+Query the balances of **alice**:
 
 ```shell
-wasmd q bank balances wasm1uew8hw9y5z03atcf4zcw3k67g5uk0w7t904p9a
+wasmd query bank balances wasm1luhze876rg7t03wzhu2uvs4c2ynkfr0gwgd4sf -o json | jq 
 ```
 
-```text
-balances:
-- amount: "1000000000000"
-  denom: stake
-pagination:
-  total: "1"
+```json
+{
+  "balances": [
+    {
+      "denom": "stake",
+      "amount": "999750000000"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+```
+
+Query the balances of **bob**:
+
+```shell
+wasmd query bank balances wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam -o json | jq
+```
+
+```json
+{
+  "balances": [
+    {
+      "denom": "stake",
+      "amount": "1000000000000"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
 ```
 
 ```shell
