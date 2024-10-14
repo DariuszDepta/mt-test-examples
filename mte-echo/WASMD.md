@@ -365,36 +365,196 @@ Output:
 ]
 ```
 
-Send 100stake from **bob** to 
+Send 100stake from **bob** to the contract:
+- **bob** address: `wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam`
+- contract address: `wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d`
 
 ```shell
-wasmd tx bank send wasm1hrh5k5utg4u266ewg2cn6nnsud88yssrja64y9 wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d 100stake -o json --chain-id=wte --keyring-backend=test -y
-wasmd tx bank send wasm1hrh5k5utg4u266ewg2cn6nnsud88yssrja64y9 wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht 100stake -o json --chain-id=wte --keyring-backend=test -y
+wasmd tx bank send wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d 100stake --chain-id=wte --keyring-backend=test -y -o json | jq
 ```
+
+Output:
+```json
+{
+  "height": "0",
+  "txhash": "9F3BBAA2B62B280D2062B276B53F9EFDD2A82F6B99534CD976AEA60E23C89EFF",
+  "codespace": "",
+  "code": 0,
+  "data": "",
+  "raw_log": "",
+  "logs": [],
+  "info": "",
+  "gas_wanted": "0",
+  "gas_used": "0",
+  "tx": null,
+  "timestamp": "",
+  "events": []
+}
+```
+
+Check the balances for **bob**:
 
 ```shell
-wasmd q bank balances wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d
-wasmd q bank balances wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht
+wasmd query bank balances wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam -o json | jq
 ```
 
-```text
-balances:
-- amount: "100"
-  denom: stake
-pagination:
-  total: "1"
+Output:
+```json
+{
+  "balances": [
+    {
+      "denom": "stake",
+      "amount": "999999999900"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+
 ```
+
+Check the balances for the contract:
 
 ```shell
-wasmd tx wasm execute wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht '{"send":"wasm1uew8hw9y5z03atcf4zcw3k67g5uk0w7t904p9a"}' --from alice --chain-id wte --keyring-backend=test -y -o json
-# contract address ---^                                                 # bob's address --------^
+wasmd query bank balances wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d -o json | jq
 ```
+
+```json
+{
+  "balances": [
+    {
+      "denom": "stake",
+      "amount": "100"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+```
+
+## Execute contract message
+
+Execute `send` message on the contract. The contract should return the `Bank::Send message`,
+then the chain executes this message and the contract gets the result in reply.
+
+- Contract address: `wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d`  
+- **bob** address: `wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam`
+
+State before: contract has 100stake, bob has 999999999900stake.
+State after: contract has 90stake, bob has 999999999910stake.
 
 ```shell
-wasmd q wasm contract-state smart wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht '"replies"'
+wasmd tx wasm execute wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '{"send":"wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam"}' --from alice --chain-id wte --keyring-backend=test -y -o json | jq
+# contract address ---^                                                        bob's address ---^                  alice instantiated the contract ---^                                 
 ```
 
-```text
-data:
-  content: '{"id":1,"payload":"","gas_used":0,"result":{"ok":{"events":[],"data":null,"msg_responses":[{"type_url":"/cosmos.bank.v1beta1.MsgSendResponse","value":""}]}}}'
+Output:
+```json
+{
+  "height": "0",
+  "txhash": "1A1D9DD7D673ECF4189BAA4BEEB03C4D888A1C5FB66FF37AB78A27090EFFD9FA",
+  "codespace": "",
+  "code": 0,
+  "data": "",
+  "raw_log": "",
+  "logs": [],
+  "info": "",
+  "gas_wanted": "0",
+  "gas_used": "0",
+  "tx": null,
+  "timestamp": "",
+  "events": []
+}
+```
+
+Check the balance for **bob**:
+
+```shell
+wasmd query bank balances wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam -o json | jq
+```
+
+Output:
+```json
+{
+  "balances": [
+    {
+      "denom": "stake",
+      "amount": "999999999910"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+```
+
+Check the balance for contract:
+
+```shell
+wasmd query bank balances wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d -o json | jq
+```
+
+Output:
+```json
+{
+  "balances": [
+    {
+      "denom": "stake",
+      "amount": "90"
+    }
+  ],
+  "pagination": {
+    "total": "1"
+  }
+}
+```
+
+Check if there is any reply in the contract:
+
+```shell
+wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"replies"' -o json | jq
+```
+
+```json
+{
+  "data": {
+    "count": 1
+  }
+}
+```
+
+Retrieve the reply content:
+
+```shell
+wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"content"' -o json | jq
+```
+
+```json
+{
+  "data": {
+    "content": "{\"id\":1,\"payload\":\"\",\"gas_used\":0,\"result\":{\"ok\":{\"events\":[],\"data\":null,\"msg_responses\":[{\"type_url\":\"/cosmos.bank.v1beta1.MsgSendResponse\",\"value\":\"\"}]}}}"
+  }
+}
+```
+
+This is what we wanted to get:
+
+```json
+{
+  "id":1, 
+  "payload": "",
+  "gas_used": 0,
+  "result": {
+    "ok": {
+      "events":[],
+      "data": null,
+      "msg_responses": [{
+        "type_url": "/cosmos.bank.v1beta1.MsgSendResponse",
+        "value": ""
+      }]
+    }
+  }
+}
 ```
