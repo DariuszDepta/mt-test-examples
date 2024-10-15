@@ -6,3 +6,5 @@ Examples of tests written using [CosmWasm MultiTest](https://crates.io/crates/cw
 |:------------------------:|--------------------------|
 | [mte-intro](./mte-intro) | Getting started example. |
 |  [mte-echo](./mte-echo)  | Echo smart contract.     |
+
+To configure the `wasmd` node, follow [these instructions](./WASMD.md).

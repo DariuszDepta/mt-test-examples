@@ -21,4 +21,5 @@ serde = "1.0"
 # cw-multi-test = { version = "2", features = ["cosmwasm_2_0"] }
 cw-multi-test = { path = "../../../CosmWasm/cw-multi-test-2", features = ["cosmwasm_2_1"] }
 serde_json = "1.0"
+prost = "0.13.3"
 

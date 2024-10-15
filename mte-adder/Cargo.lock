@@ -682,6 +682,7 @@ dependencies = [
  "cosmwasm-std",
  "cw-multi-test",
  "cw-storage-plus",
+ "prost",
  "schemars",
  "serde",
  "serde_json",
