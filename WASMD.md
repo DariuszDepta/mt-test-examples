@@ -13,10 +13,6 @@ go version
 ```
 
 Output:
-```text
-go version go1.23.2 linux/amd64
-```
-
 > go version go1.23.2 linux/amd64
 
 To install a fresh version of Go or to upgrade, follow these [instructions](https://go.dev/doc/install).
@@ -62,13 +58,12 @@ make install
 ```
 
 Output:
-```text
-go install -mod=readonly -tags "netgo,ledger" -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=wasm -X github.com/cosmos/cosmos-sdk/version.AppName=wasmd
--X github.com/cosmos/cosmos-sdk/version.Version=0.53.0-20-g8b8bb7c9 -X github.com/cosmos/cosmos-sdk/version.Commit=8b8bb7c9809cfc10c3e942f730b3cddb3e7a977d
- -X github.com/CosmWasm/wasmd/app.Bech32Prefix=wasm -X "github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger"' -trimpath ./cmd/wasmd
-go: downloading github.com/cosmos/cosmos-sdk v0.50.10
-go: downloading cosmossdk.io/x/tx v0.13.5
-```
+> go install -mod=readonly -tags "netgo,ledger" -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=wasm -X github.com/cosmos/cosmos-sdk/version.AppName=wasmd
+> -X github.com/cosmos/cosmos-sdk/version.Version=0.53.0-20-g8b8bb7c9 -X github.com/cosmos/cosmos-sdk/version.Commit=8b8bb7c9809cfc10c3e942f730b3cddb3e7a977d
+> -X github.com/CosmWasm/wasmd/app.Bech32Prefix=wasm -X "github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger"' -trimpath ./cmd/wasmd
+> go: downloading github.com/cosmos/cosmos-sdk v0.50.10
+> go: downloading cosmossdk.io/x/tx v0.13.5
+
 
 Check if `wasmd` is installed and available:
 
