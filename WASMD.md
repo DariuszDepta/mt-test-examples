@@ -80,9 +80,9 @@ which wasmd
 ```
 
 Output:
-```text
-/usr/local/bin/wasmd
-```
+> ```text
+> /usr/local/bin/wasmd
+> ```
 
 Check the version of the installed `wasmd`:
 
