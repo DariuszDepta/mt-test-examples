@@ -79,15 +79,6 @@ Output:
 /usr/local/bin/wasmd
 ```
 
-If the `wasmd` binary can not be found on your machine, update your path.
-On Fedora, for example, the `~/.bash_profile` should contain similar entry:
-
-```text
-# Added by Go installer
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$HOME/go/bin
-```
-
 Check the version of the installed `wasmd`:
 
 ```shell
@@ -271,4 +262,32 @@ wasmd genesis add-genesis-account dave "1000000000000stake" --keyring-backend=te
 wasmd genesis gentx alice "250000000stake" --chain-id=wte --amount="250000000stake" --keyring-backend=test
 wasmd genesis collect-gentxs
 wasmd start
+```
+
+## Retrieving the keys
+
+If you forget the names of your accounts and the addresses, you can retrieve them the following way (the node must be running):
+
+```shell
+wasmd keys list --keyring-backend=test
+```
+
+Output (this data is fake, you will get something else):
+```text
+- address: wasm13un986wwc4cg82pdyy9j47k3fad6gv96ycxgmr
+  name: alice
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A/LQsvrterteDAX5Vfq49Yigo+AQgro4T1cj1fmpFhC4"}'
+  type: local
+- address: wasm1rq9qlzaewq7frdg7re0hgrchutuz8hp8admfec
+  name: bob
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Amd6g+A8lsK6zertertBc0p6jQ5pNFYyfiA+95BAj17J"}'
+  type: local
+- address: wasm1f82rwx883zuvc4dvgegpmmapddcj2dalke0tre
+  name: cecil
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Arr9T+yCE6Ib2EcjWbmRSretertxQmHNX4iGYsuFkikG"}'
+  type: local
+- address: wasm104zw9gj273mwrlxhc5fzg600xa90gj750nxfaw
+  name: dave
+  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A2VKLeziU6aw78IjsVp1CeVPkh4ertertM6j5BuitjTZ"}'
+  type: local
 ```
