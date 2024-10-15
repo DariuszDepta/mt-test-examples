@@ -108,9 +108,9 @@ Output:
 >  "moniker": "wte",
 >  "chain_id": "wte",
 >  "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
->  "gentxs_dir": ""
+>  "gentxs_dir": "",
 >   
->  // many lines follow
+>  "//": "many lines follow"
 > }
 > ```
 
