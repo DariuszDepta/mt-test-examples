@@ -122,54 +122,54 @@ wasmd keys add alice --keyring-backend=test
 ```
 
 Output:
-```text
-- address: wasm1p092r7ywtawlqmymzdkpehmvrac9gfw32l3ppf
-  name: alice
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AgtKHeqMjLgHmhqu6pE0Fgj0F5AOs07a9jweojZKqP8+"}'
-  type: local
-
-
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
-side swamp spike bright acid sell march submit usual stick party frog toddler wrong junk concert swallow sport speed direct input visual gloom myth
-```
+> ```text
+> - address: wasm1p092r7ywtawlqmymzdkpehmvrac9gfw32l3ppf
+>   name: alice
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"AgtKHeqMjLgHmhqu6pE0Fgj0F5AOs07a9jweojZKqP8+"}'
+>   type: local
+> 
+> 
+> **Important** write this mnemonic phrase in a safe place.
+> It is the only way to recover your account if you ever forget your password.
+> 
+> side swamp spike bright acid sell march submit usual stick party frog toddler wrong junk concert swallow sport speed direct input visual gloom myth
+> ```
 
 ```shell
 wasmd keys add bob --keyring-backend=test
 ```
 
 Output:
-```text
-- address: wasm1fgjj69v0sg737cp6jsjtzqqsjxj6hc35rdn7gs
-  name: bob
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A31YTJeU6P0qAll7ZjXikYw7l6IkdpYjcGYCp2nbbHdE"}'
-  type: local
-
-
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
-earn smooth rally ignore walk hero kit delay famous excess grape rare donkey addict all craft lady march rose crowd drastic worry wall today
-```
+> ```text
+> - address: wasm1fgjj69v0sg737cp6jsjtzqqsjxj6hc35rdn7gs
+>   name: bob
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A31YTJeU6P0qAll7ZjXikYw7l6IkdpYjcGYCp2nbbHdE"}'
+>   type: local
+> 
+> 
+> **Important** write this mnemonic phrase in a safe place.
+> It is the only way to recover your account if you ever forget your password.
+> 
+> earn smooth rally ignore walk hero kit delay famous excess grape rare donkey addict all craft lady march rose crowd drastic worry wall today
+> ```
 
 ```shell
 wasmd keys add cecil --keyring-backend=test
 ```
 
 Output:
-```text
-- address: wasm1tnjp5ct9r35xnpkmc7p9ud445dl3zelfru6rxy
-  name: cecil
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"ArHqfRf3sc2wm0yL1HRPbpKRlIqmp8kJsJiKPwaoGH19"}'
-  type: local
-
-
-**Important** write this mnemonic phrase in a safe place.
-It is the only way to recover your account if you ever forget your password.
-
-pen unfold menu tourist measure miss speed party online idea reason food put wide uncle medal office bomb enforce problem resource train turn frequent
-```
+> ```text
+> - address: wasm1tnjp5ct9r35xnpkmc7p9ud445dl3zelfru6rxy
+>   name: cecil
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"ArHqfRf3sc2wm0yL1HRPbpKRlIqmp8kJsJiKPwaoGH19"}'
+>   type: local
+> 
+> 
+> **Important** write this mnemonic phrase in a safe place.
+> It is the only way to recover your account if you ever forget your password.
+> 
+> pen unfold menu tourist measure miss speed party online idea reason food put wide uncle medal office bomb enforce problem resource train turn frequent
+> ```
 
 The last account is created using JSON output and the result is formatted using `jq` (just to show how to do it).
 
@@ -177,18 +177,18 @@ The last account is created using JSON output and the result is formatted using 
 wasmd keys add dave --keyring-backend=test --output json | jq
 ```
 
-```json
-{
-  "name": "dave",
-  "type": "local",
-  "address": "wasm1qgukmr2qtaw9hqhx2pmlsk7e9lg7xh6t6dm3re",
-  "pubkey": "{\"@type\":\"/cosmos.crypto.secp256k1.PubKey\",\"key\":\"AubAQdRFVaAw1pxu6oxXKwl//f/JdxZqv8ri6VWNAChO\"}",
-  "mnemonic": "return dog crowd ranch notice jeans spare expand fossil glow kidney acoustic cage alert cluster nose firm address enhance repair pair balcony broken manual"
-}
-```
+Output:
+> ```json
+> {
+>   "name": "dave",
+>   "type": "local",
+>   "address": "wasm1qgukmr2qtaw9hqhx2pmlsk7e9lg7xh6t6dm3re",
+>   "pubkey": "{\"@type\":\"/cosmos.crypto.secp256k1.PubKey\",\"key\":\"AubAQdRFVaAw1pxu6oxXKwl//f/JdxZqv8ri6VWNAChO\"}",
+>   "mnemonic": "return dog crowd ranch notice jeans spare expand fossil glow kidney acoustic cage alert cluster nose firm address enhance repair pair balcony broken manual"
+> }
+> ```
 
 Add genesis accounts with initial balances for **alice**, **bob**, **cecil** and **dave**:
-
 
 ```shell
 wasmd genesis add-genesis-account alice "1000000000000stake" --keyring-backend=test
@@ -213,9 +213,9 @@ wasmd genesis gentx alice "250000000stake" --chain-id=wte --amount="250000000sta
 ```
 
 Output:
-```text
-Genesis transaction written to "~/.wasmd/config/gentx/gentx-8adbede8821774f5868719c0d1b5e6f9db5d1f36.json"
-```
+> ```text
+> Genesis transaction written to "~/.wasmd/config/gentx/gentx-8adbede8821774f5868719c0d1b5e6f9db5d1f36.json"
+> ```
 
 Collect genesis transactions to finalize the genesis file:
 
@@ -224,16 +224,16 @@ wasmd genesis collect-gentxs
 ```
 
 Output:
-```text
-{
- "moniker": "wte",
- "chain_id": "wte",
- "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
- "gentxs_dir": "~/.wasmd/config/gentx",
-   
- // many lines follow
-}
-```
+> ```json
+> {
+>  "moniker": "wte",
+>  "chain_id": "wte",
+>  "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
+>  "gentxs_dir": "~/.wasmd/config/gentx",
+>    
+>  "//": "many lines follow..."
+> }
+> ```
 
 Start the node:
 
@@ -242,13 +242,13 @@ wasmd start
 ```
 
 Output:
-```text
-// many lines
-5:08PM INF finalized block block_app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state num_txs_res=0 num_val_updates=0
-5:08PM INF executed block app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state
-5:08PM INF committed state block_app_hash=F6B5740B8346EB883E557165F780D1A646A73AB4819EA0CEA941B330C003801A height=3 module=state
-5:08PM INF indexed block events height=3 module=txindex
-```
+> ```text
+> // many lines
+> 5:08PM INF finalized block block_app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state num_txs_res=0 num_val_updates=0
+> 5:08PM INF executed block app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state
+> 5:08PM INF committed state block_app_hash=F6B5740B8346EB883E557165F780D1A646A73AB4819EA0CEA941B330C003801A height=3 module=state
+> 5:08PM INF indexed block events height=3 module=txindex
+> ```
 
 🚀 The node is now running! 
 
@@ -278,21 +278,21 @@ wasmd keys list --keyring-backend=test
 ```
 
 Output (this data is fake, you will get something else):
-```text
-- address: wasm13un986wwc4cg82pdyy9j47k3fad6gv96ycxgmr
-  name: alice
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A/LQsvrterteDAX5Vfq49Yigo+AQgro4T1cj1fmpFhC4"}'
-  type: local
-- address: wasm1rq9qlzaewq7frdg7re0hgrchutuz8hp8admfec
-  name: bob
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Amd6g+A8lsK6zertertBc0p6jQ5pNFYyfiA+95BAj17J"}'
-  type: local
-- address: wasm1f82rwx883zuvc4dvgegpmmapddcj2dalke0tre
-  name: cecil
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Arr9T+yCE6Ib2EcjWbmRSretertxQmHNX4iGYsuFkikG"}'
-  type: local
-- address: wasm104zw9gj273mwrlxhc5fzg600xa90gj750nxfaw
-  name: dave
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A2VKLeziU6aw78IjsVp1CeVPkh4ertertM6j5BuitjTZ"}'
-  type: local
-```
+> ```text
+> - address: wasm13un986wwc4cg82pdyy9j47k3fad6gv96ycxgmr
+>   name: alice
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A/LQsvrterteDAX5Vfq49Yigo+AQgro4T1cj1fmpFhC4"}'
+>   type: local
+> - address: wasm1rq9qlzaewq7frdg7re0hgrchutuz8hp8admfec
+>   name: bob
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Amd6g+A8lsK6zertertBc0p6jQ5pNFYyfiA+95BAj17J"}'
+>   type: local
+> - address: wasm1f82rwx883zuvc4dvgegpmmapddcj2dalke0tre
+>   name: cecil
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Arr9T+yCE6Ib2EcjWbmRSretertxQmHNX4iGYsuFkikG"}'
+>   type: local
+> - address: wasm104zw9gj273mwrlxhc5fzg600xa90gj750nxfaw
+>   name: dave
+>   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A2VKLeziU6aw78IjsVp1CeVPkh4ertertM6j5BuitjTZ"}'
+>   type: local
+> ```
