@@ -277,7 +277,7 @@ If you forget the names of your accounts and the addresses, you can retrieve the
 wasmd keys list --keyring-backend=test
 ```
 
-Output (this data is fake, you will get something else):
+_Output:_
 > ```text
 > - address: wasm13un986wwc4cg82pdyy9j47k3fad6gv96ycxgmr
 >   name: alice
@@ -296,3 +296,4 @@ Output (this data is fake, you will get something else):
 >   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A2VKLeziU6aw78IjsVp1CeVPkh4ertertM6j5BuitjTZ"}'
 >   type: local
 > ```
+(data above is fake, you will get something else)
