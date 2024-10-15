@@ -13,7 +13,9 @@ go version
 ```
 
 Output:
+> ```text
 > go version go1.23.2 linux/amd64
+> ```
 
 To install a fresh version of Go or to upgrade, follow these [instructions](https://go.dev/doc/install).
 
