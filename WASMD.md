@@ -61,9 +61,13 @@ make install
 
 Output:
 > ```text
-> go install -mod=readonly -tags "netgo,ledger" -ldflags '-X github.com/cosmos/cosmos-sdk/version.Name=wasm -X github.com/cosmos/cosmos-sdk/version.AppName=wasmd
-> -X github.com/cosmos/cosmos-sdk/version.Version=0.53.0-20-g8b8bb7c9 -X github.com/cosmos/cosmos-sdk/version.Commit=8b8bb7c9809cfc10c3e942f730b3cddb3e7a977d
-> -X github.com/CosmWasm/wasmd/app.Bech32Prefix=wasm -X "github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger"' -trimpath ./cmd/wasmd
+> go install -mod=readonly -tags "netgo,ledger" -ldflags 
+> '-X github.com/cosmos/cosmos-sdk/version.Name=wasm
+>  -X github.com/cosmos/cosmos-sdk/version.AppName=wasmd
+>  -X github.com/cosmos/cosmos-sdk/version.Version=0.53.0-20-g8b8bb7c9
+>  -X github.com/cosmos/cosmos-sdk/version.Commit=8b8bb7c9809cfc10c3e942f730b3cddb3e7a977d
+>  -X github.com/CosmWasm/wasmd/app.Bech32Prefix=wasm
+>  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=netgo,ledger"' -trimpath ./cmd/wasmd
 > go: downloading github.com/cosmos/cosmos-sdk v0.50.10
 > go: downloading cosmossdk.io/x/tx v0.13.5
 > ```
@@ -99,16 +103,16 @@ wasmd init wte --chain-id=wte
 ```
 
 Output:
-```text
-{
- "moniker": "wte",
- "chain_id": "wte",
- "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
- "gentxs_dir": ""
-  
- // many lines follow
-}
-```
+> ```json
+> {
+>  "moniker": "wte",
+>  "chain_id": "wte",
+>  "node_id": "8adbede8821774f5868719c0d1b5e6f9db5d1f36",
+>  "gentxs_dir": ""
+>   
+>  // many lines follow
+> }
+> ```
 
 Add key pairs for **alice**, **bob**, **cecil** and **dave** accounts.
 The outputs of the commands below will be slightly different on your machine, but it's normal.
