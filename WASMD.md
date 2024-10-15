@@ -91,9 +91,9 @@ wasmd version
 ```
 
 Output:
-```text
-0.53.0-21-g028261cb
-```
+> ```text
+> 0.53.0-21-g028261cb
+> ```
 
 Initialize the node with a moniker (name) and a specific chain ID.
 The node used in all examples is named **wte** and has also the same ID.  
