@@ -12,7 +12,7 @@ Check if you have (possible the latest) version of Go installed:
 go version
 ```
 
-Output:
+_Output:_
 > ```text
 > go version go1.23.2 linux/amd64
 > ```
@@ -59,7 +59,7 @@ Install `wasmd`:
 make install
 ```
 
-Output:
+_Output:_
 > ```text
 > go install -mod=readonly -tags "netgo,ledger" -ldflags 
 > '-X github.com/cosmos/cosmos-sdk/version.Name=wasm
@@ -79,7 +79,7 @@ Check if `wasmd` is installed and available:
 which wasmd
 ```
 
-Output:
+_Output:_
 > ```text
 > /usr/local/bin/wasmd
 > ```
@@ -90,7 +90,7 @@ Check the version of the installed `wasmd`:
 wasmd version
 ```
 
-Output:
+_Output:_
 > ```text
 > 0.53.0-21-g028261cb
 > ```
@@ -102,7 +102,7 @@ The node used in all examples is named **wte** and has also the same ID.
 wasmd init wte --chain-id=wte
 ```
 
-Output:
+_Output:_
 > ```json
 > {
 >  "moniker": "wte",
@@ -121,7 +121,7 @@ The outputs of the commands below will be slightly different on your machine, bu
 wasmd keys add alice --keyring-backend=test
 ```
 
-Output:
+_Output:_
 > ```text
 > - address: wasm1p092r7ywtawlqmymzdkpehmvrac9gfw32l3ppf
 >   name: alice
@@ -139,7 +139,7 @@ Output:
 wasmd keys add bob --keyring-backend=test
 ```
 
-Output:
+_Output:_
 > ```text
 > - address: wasm1fgjj69v0sg737cp6jsjtzqqsjxj6hc35rdn7gs
 >   name: bob
@@ -157,7 +157,7 @@ Output:
 wasmd keys add cecil --keyring-backend=test
 ```
 
-Output:
+_Output:_
 > ```text
 > - address: wasm1tnjp5ct9r35xnpkmc7p9ud445dl3zelfru6rxy
 >   name: cecil
@@ -177,7 +177,7 @@ The last account is created using JSON output and the result is formatted using 
 wasmd keys add dave --keyring-backend=test --output json | jq
 ```
 
-Output:
+_Output:_
 > ```json
 > {
 >   "name": "dave",
@@ -212,7 +212,7 @@ Create a genesis transaction for the **alice** account, making **alice** a valid
 wasmd genesis gentx alice "250000000stake" --chain-id=wte --amount="250000000stake" --keyring-backend=test
 ```
 
-Output:
+_Output:_
 > ```text
 > Genesis transaction written to "~/.wasmd/config/gentx/gentx-8adbede8821774f5868719c0d1b5e6f9db5d1f36.json"
 > ```
@@ -223,7 +223,7 @@ Collect genesis transactions to finalize the genesis file:
 wasmd genesis collect-gentxs
 ```
 
-Output:
+_Output:_
 > ```json
 > {
 >  "moniker": "wte",
@@ -241,7 +241,7 @@ Start the node:
 wasmd start
 ```
 
-Output:
+_Output:_
 > ```text
 > // many lines
 > 5:08PM INF finalized block block_app_hash=67045FE5DDB84D6294D11E15B46B86503C400E4AC82D910C62ADB32C228D56E5 height=3 module=state num_txs_res=0 num_val_updates=0
