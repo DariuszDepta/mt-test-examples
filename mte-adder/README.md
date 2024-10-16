@@ -63,28 +63,22 @@ _Output:_
 Check if the contract's code was stored on chain: 
 
 ```shell
-wasmd query wasm list-code -o json | jq
+wasmd query wasm list-code -o json | jq '.code_infos'
 ```
 
 _Output:_
 ```json
-{
-  "code_infos": [
-    {
-      "code_id": "1",
-      "creator": "wasm1r87s7mprs8fsh4fdcc9m5dpng7mq09mnf6u2tl",
-      "data_hash": "2F29145BBF5E5333D9F3FCBBAAD9E70D02C6F24B63AA9C1C50EDC34FD547DC4E",
-      "instantiate_permission": {
-        "permission": "Everybody",
-        "addresses": []
-      }
+[
+  {
+    "code_id": "1",
+    "creator": "wasm1r87s7mprs8fsh4fdcc9m5dpng7mq09mnf6u2tl",
+    "data_hash": "2F29145BBF5E5333D9F3FCBBAAD9E70D02C6F24B63AA9C1C50EDC34FD547DC4E",
+    "instantiate_permission": {
+      "permission": "Everybody",
+      "addresses": []
     }
-  ],
-  "pagination": {
-    "next_key": null,
-    "total": "0"
   }
-}
+]
 ```
 
 Check what contains the data in the transaction: 
