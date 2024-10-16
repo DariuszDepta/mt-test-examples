@@ -219,22 +219,17 @@ wasmd tx wasm execute wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0
 Let's check the **bob**'s balance again:
 
 ```shell
-wasmd query bank balances wasm1n49nhq3q8avhx7ys86k7620pt7je8007neq3fk -o json | jq
+wasmd query bank balances wasm1n49nhq3q8avhx7ys86k7620pt7je8007neq3fk -o json | jq '.balances'
 ```
 
 _Output_:
 ```json
-{
-  "balances": [
-    {
-      "denom": "stake",
-      "amount": "1000000000010"
-    }
-  ],
-  "pagination": {
-    "total": "1"
+[
+  {
+    "denom": "stake",
+    "amount": "1000000000010"
   }
-}
+]
 ```
 
 Let's check the contract's balance:
