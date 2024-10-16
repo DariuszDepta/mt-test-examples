@@ -1,10 +1,13 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 
-use crate::msg::{ResponderReply, ResponderQueryMsg, ResponderCount, ResponderExecuteMsg};
+use crate::msg::{
+    AdderExecuteMsg, ResponderCount, ResponderExecuteMsg, ResponderQueryMsg, ResponderReply,
+};
 use cosmwasm_std::{
     to_json_binary, to_json_string, BankMsg, Binary, Coin, Deps, DepsMut, Empty, Env, MessageInfo,
     Reply, ReplyOn, Response, StdError, StdResult, SubMsg, SubMsgResponse, SubMsgResult, Uint128,
+    WasmMsg,
 };
 use cw_storage_plus::Item;
 
@@ -57,6 +60,20 @@ pub fn execute(
                 id: ID_BANK_BURN,
                 payload: Default::default(),
                 msg: msg_bank_burn.into(),
+                gas_limit: None,
+                reply_on: ReplyOn::Always,
+            });
+        }
+        ResponderExecuteMsg::AdderAdd(addr, a, b) => {
+            let msg_wasm_execute = WasmMsg::Execute {
+                contract_addr: addr,
+                msg: to_json_binary(&AdderExecuteMsg::Add(a, b))?,
+                funds: vec![],
+            };
+            response = response.add_submessage(SubMsg {
+                id: ID_BANK_BURN,
+                payload: Default::default(),
+                msg: msg_wasm_execute.into(),
                 gas_limit: None,
                 reply_on: ReplyOn::Always,
             });

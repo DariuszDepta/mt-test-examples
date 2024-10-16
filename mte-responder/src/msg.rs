@@ -6,6 +6,8 @@ pub enum ResponderExecuteMsg {
     BankSend(String, u128, String),
     /// Attributes for executing BankMsg::Burn as a submessage: amount, denom.
     BankBurn(u128, String),
+    /// Attributes for executing Adder::Add as a submessage: a, b.
+    AdderAdd(String, u128, u128),
 }
 
 #[cw_serde]
@@ -27,4 +29,9 @@ pub struct ResponderCount {
 #[cw_serde]
 pub struct ResponderReply {
     pub content: String,
+}
+
+#[cw_serde]
+pub enum AdderExecuteMsg {
+    Add(u128, u128),
 }
