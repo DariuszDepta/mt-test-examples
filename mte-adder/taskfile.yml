@@ -16,6 +16,12 @@ tasks:
     cmds:
       - cmd: cargo +stable build
 
+  check:
+    desc: Checks the Wasm binary of the compiled contract
+    cmds:
+      - task: wasm
+      - cmd: cosmwasm-check ./target/wasm32-unknown-unknown/release/mte_adder.wasm
+
   clean:
     desc: Deletes all compilation artifacts
     cmds:
@@ -49,11 +55,6 @@ tasks:
       - cmd: cargo +stable test
 
   testn:
-    desc: Runs all tests in debug mode
-    cmds:
-      - cmd: cargo +stable nextest run
-
-  testn-out:
     desc: Runs all tests in debug mode
     cmds:
       - cmd: cargo +stable nextest run
