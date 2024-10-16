@@ -296,11 +296,13 @@ wasmd start
 
 ## Retrieving the keys
 
-If you forget the names of your accounts and the addresses, you can retrieve them the following way (the node must be running):
+If you've forgotten the names of your accounts and the addresses, you can easily retrieve them (the node must be running):
 
 ```shell
 wasmd keys list --keyring-backend=test
 ```
+
+> the following output is fake, you will get something else
 
 _Output:_
 > ```text
@@ -321,4 +323,4 @@ _Output:_
 >   pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"A2VKLeziU6aw78IjsVp1CeVPkh4ertertM6j5BuitjTZ"}'
 >   type: local
 > ```
-(data above is fake, you will get something else)
+
