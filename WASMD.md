@@ -271,6 +271,8 @@ wasmd start
 
 ## All commands in one script
 
+Content of this [script](./wasmd.sh) is shown below: 
+
 ```bash
 #!/usr/bin/env bash
 
