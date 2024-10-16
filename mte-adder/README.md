@@ -1,3 +1,15 @@
+MultiTest | Examples
+
+# Adder
+
+Simple smart contract that adds two numbers.
+
+## Features
+- Initializing the sum of the last operation by evaluating the `instantiate` entry-point.
+- Adding two integers by evaluating the `execute` entry-point.
+- Adding two integers by evaluating the `query` entry-point.
+- Querying the sum of the last `execute` operation by evaluating `query` entrypoint. 
+
 ```shell
 wasmd tx wasm store ./target/wasm32-unknown-unknown/release/mte_adder.wasm --from alice --chain-id wte --gas 10000000 --keyring-backend=test -o json -y | jq
 ```
