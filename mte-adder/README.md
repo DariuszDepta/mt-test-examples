@@ -5,7 +5,7 @@ MultiTest | Examples
 Simple smart contract that adds two numbers.
 
 ## Features
-- Initializing the sum of the last operation by evaluating the `instantiate` entry-point.
+- Initializing the sum by evaluating the `instantiate` entry-point.
 - Adding two integers by evaluating the `execute` entry-point.
 - Adding two integers by evaluating the `query` entry-point.
 - Querying the sum of the last `execute` operation by evaluating `query` entrypoint. 
