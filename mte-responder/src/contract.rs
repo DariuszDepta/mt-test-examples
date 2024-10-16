@@ -12,6 +12,9 @@ const MSG_RESPONSES_COUNTER: Item<u64> = Item::new("msg-responses-counter");
 const REPLY_COUNTER: Item<u64> = Item::new("reply-counter");
 const RESULT: Item<Reply> = Item::new("reply");
 
+const ID_BANK_SEND: u64 = 1;
+const ID_BANK_BURN: u64 = 2;
+
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn instantiate(
     deps: DepsMut,
@@ -34,14 +37,26 @@ pub fn execute(
     let mut response = Response::default();
     match msg {
         ResponderExecuteMsg::BankSend(addr, amount, denom) => {
-            let b = BankMsg::Send {
+            let msg_bank_send = BankMsg::Send {
                 to_address: addr,
                 amount: vec![Coin::new(Uint128::new(amount), denom)],
             };
             response = response.add_submessage(SubMsg {
-                id: 1,
+                id: ID_BANK_SEND,
                 payload: Default::default(),
-                msg: b.into(),
+                msg: msg_bank_send.into(),
+                gas_limit: None,
+                reply_on: ReplyOn::Always,
+            });
+        }
+        ResponderExecuteMsg::BankBurn(amount, denom) => {
+            let msg_bank_burn = BankMsg::Burn {
+                amount: vec![Coin::new(Uint128::new(amount), denom)],
+            };
+            response = response.add_submessage(SubMsg {
+                id: ID_BANK_BURN,
+                payload: Default::default(),
+                msg: msg_bank_burn.into(),
                 gas_limit: None,
                 reply_on: ReplyOn::Always,
             });

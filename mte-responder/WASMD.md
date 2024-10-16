@@ -352,7 +352,7 @@ wasmd query bank balances wasm19fuangk4gq63387qjxsnjr0c0dkkrru54f0eam -o json | 
 Check the contract address:
 
 ```shell
-wasmd query wasm list-contract-by-code 1 -o json | jq '.contracts' 
+wasmd query wasm list-contract-by-code 1 -o json | jq '.contracts[0]' 
 ```
 
 Output:
