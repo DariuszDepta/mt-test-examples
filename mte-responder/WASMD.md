@@ -1,8 +1,5 @@
 # WASMD
 
-Running `replier` contract on `wasmd` chain.
-> (TODO) rename this project to `mte-replier`, it is more adequate name for what the contract was designed for
-
 ## Preparing the `wasmd` node
 
 Make sure, there is no previous `wasmd` node configured:

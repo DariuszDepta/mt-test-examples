@@ -1,7 +1,7 @@
 #[cfg(not(feature = "library"))]
 use cosmwasm_std::entry_point;
 
-use crate::msg::{EchoContent, EchoQuery, EchoResponse, ExecMessage};
+use crate::msg::{ResponderReply, ResponderQueryMsg, ResponderCount, ResponderExecuteMsg};
 use cosmwasm_std::{
     to_json_binary, to_json_string, BankMsg, Binary, Coin, Deps, DepsMut, Empty, Env, MessageInfo,
     Reply, ReplyOn, Response, StdError, StdResult, SubMsg, SubMsgResponse, SubMsgResult, Uint128,
@@ -29,14 +29,14 @@ pub fn execute(
     _deps: DepsMut,
     _env: Env,
     _info: MessageInfo,
-    msg: ExecMessage,
+    msg: ResponderExecuteMsg,
 ) -> StdResult<Response> {
     let mut response = Response::default();
     match msg {
-        ExecMessage::Send(addr) => {
+        ResponderExecuteMsg::BankSend(addr, amount, denom) => {
             let b = BankMsg::Send {
                 to_address: addr,
-                amount: vec![Coin::new(Uint128::new(10), "stake")],
+                amount: vec![Coin::new(Uint128::new(amount), denom)],
             };
             response = response.add_submessage(SubMsg {
                 id: 1,
@@ -51,15 +51,15 @@ pub fn execute(
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn query(deps: Deps, _env: Env, msg: EchoQuery) -> StdResult<Binary> {
+pub fn query(deps: Deps, _env: Env, msg: ResponderQueryMsg) -> StdResult<Binary> {
     match msg {
-        EchoQuery::Count => Ok(to_json_binary(&EchoResponse {
+        ResponderQueryMsg::Count => Ok(to_json_binary(&ResponderCount {
             count: MSG_RESPONSES_COUNTER.may_load(deps.storage)?.unwrap(),
         })?),
-        EchoQuery::Replies => Ok(to_json_binary(&EchoResponse {
+        ResponderQueryMsg::Replies => Ok(to_json_binary(&ResponderCount {
             count: REPLY_COUNTER.may_load(deps.storage)?.unwrap(),
         })?),
-        EchoQuery::Content => Ok(to_json_binary(&EchoContent {
+        ResponderQueryMsg::Content => Ok(to_json_binary(&ResponderReply {
             content: to_json_string(&RESULT.may_load(deps.storage)?.unwrap()).unwrap(),
         })?),
     }

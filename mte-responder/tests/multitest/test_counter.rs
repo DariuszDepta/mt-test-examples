@@ -1,6 +1,6 @@
 use cosmwasm_std::{BankMsg, Coin, Empty, Uint128};
 use cw_multi_test::{App, Contract, ContractWrapper, Executor, IntoAddr};
-use mte_echo::msg::{EchoContent, EchoQuery, EchoResponse, ExecMessage};
+use mte_responder::msg::{ResponderReply, ResponderQueryMsg, ResponderCount, ResponderExecuteMsg};
 use serde_json::Value;
 
 const DENOM: &str = "stake";
@@ -8,11 +8,11 @@ const DENOM: &str = "stake";
 fn replier_contract() -> Box<dyn Contract<Empty>> {
     Box::new(
         ContractWrapper::new_with_empty(
-            mte_echo::contract::execute,
-            mte_echo::contract::instantiate,
-            mte_echo::contract::query,
+            mte_responder::contract::execute,
+            mte_responder::contract::instantiate,
+            mte_responder::contract::query,
         )
-        .with_reply(mte_echo::contract::reply),
+        .with_reply(mte_responder::contract::reply),
     )
 }
 
@@ -41,9 +41,9 @@ fn instantiating_should_work() {
         .instantiate_contract(code_id, alice_addr, &Empty {}, &[], "replier-label", None)
         .unwrap();
 
-    let res: EchoResponse = app
+    let res: ResponderCount = app
         .wrap()
-        .query_wasm_smart(contract_addr, &EchoQuery::Count)
+        .query_wasm_smart(contract_addr, &ResponderQueryMsg::Count)
         .unwrap();
 
     assert_eq!(0, res.count);
@@ -113,7 +113,7 @@ fn executing_should_work() {
     // Now the contract has 100 tokens. Let's execute the message on the contract and
     // ask the contract to transfer 10 coins to Bob. It will be done by returning bank message
     // which should be processed by chain and the reply should be "sent" back to the contract.
-    let msg = ExecMessage::Send(bob_addr.to_string());
+    let msg = ResponderExecuteMsg::BankSend(bob_addr.to_string(), 10, DENOM.to_string());
     app.execute_contract(alice_addr.clone(), contract_addr.clone(), &msg, &[])
         .unwrap();
 
@@ -127,15 +127,15 @@ fn executing_should_work() {
     assert_balance(90, app.wrap().query_all_balances(&contract_addr).unwrap());
 
     // There should be one reply message processed in the contract.
-    let res: EchoResponse = app
+    let res: ResponderCount = app
         .wrap()
-        .query_wasm_smart(contract_addr.clone(), &EchoQuery::Replies)
+        .query_wasm_smart(contract_addr.clone(), &ResponderQueryMsg::Replies)
         .unwrap();
     assert_eq!(1, res.count);
 
-    let res: EchoContent = app
+    let res: ResponderReply = app
         .wrap()
-        .query_wasm_smart(contract_addr, &EchoQuery::Content)
+        .query_wasm_smart(contract_addr, &ResponderQueryMsg::Content)
         .unwrap();
     let content = res.content.clone();
     let json: Value = serde_json::from_str(content.as_str()).unwrap();
