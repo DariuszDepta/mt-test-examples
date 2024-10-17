@@ -269,7 +269,7 @@ The contract has now 90 coins. **alice** wants to burn them all!
 
 ```shell
 wasmd tx wasm execute wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '{"bank_burn":[90,"stake"]}' --from alice --chain-id wte --keyring-backend=test -y -o json | jq
-# contract address ---^                                                                   amount ---^   ^--- denom        ^--- alice is calling the contract
+# contract address ---^                                                                    amount ---^   ^--- denom       ^--- alice is calling the contract
 ```
 
 Let's check the contract's balance after burning:
@@ -298,4 +298,4 @@ _Output_:
 }
 ```
 
-> Hmmm, `msg_responses` is empty for `BankMsg::Burn`. 
+❓ `msg_responses` is empty for `BankMsg::Burn`, is it correct? 

@@ -185,7 +185,7 @@ _Output:_
 }
 ```
 
-We can also ask the contract to add numbers without any transaction:
+We can also ask the contract to add numbers without any transaction (using query):
 
 ```shell
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '{"add":[333,22]}' -o json | jq

@@ -1,0 +1,70 @@
+version: '3'
+
+silent: true
+
+tasks:
+
+  before-commit:
+    desc: Run this before committing any changes
+    cmds:
+      - cmd: cargo clean
+      - cmd: rm -rf Cargo.lock
+      - cmd: cargo +stable build
+
+  build:
+    desc: Builds in debug mode
+    cmds:
+      - cmd: cargo +stable build
+
+  check:
+    desc: Checks the Wasm binary of the compiled contract
+    cmds:
+      - task: wasm
+      - cmd: cosmwasm-check ./target/wasm32-unknown-unknown/release/mte_alu.wasm
+
+  clean:
+    desc: Deletes all compilation artifacts
+    cmds:
+      - cmd: cargo clean
+      - cmd: rm -rf schema
+
+  clippy:
+    desc: Runs clippy for all targets
+    cmds:
+      - cmd: cargo +stable clippy --all-targets
+
+  cov:
+    desc: Generates code coverage
+    cmds:
+      - task: clean
+      - cmd: ./cov.sh
+
+  fmt:
+    desc: Formats the code
+    cmds:
+      - cmd: cargo +stable fmt
+
+  schema:
+    desc: Builds the schema
+    cmds:
+      - cmd: cargo run --bin schema
+
+  test:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable test
+
+  testn:
+    desc: Runs all tests in debug mode
+    cmds:
+      - cmd: cargo +stable nextest run
+
+  wasm:
+    desc: Builds the Wasm binary
+    cmds:
+      - cmd: cargo build --release --target wasm32-unknown-unknown --lib
+
+  wasm-debug:
+    desc: Builds the Wasm binary in debug mode
+    cmds:
+      - cmd: cargo build --target wasm32-unknown-unknown --lib
