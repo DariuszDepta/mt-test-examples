@@ -16,6 +16,12 @@ tasks:
     cmds:
       - cmd: cargo +stable build
 
+  check:
+    desc: Checks the Wasm binary of the compiled contract
+    cmds:
+      - task: wasm
+      - cmd: cosmwasm-check ./target/wasm32-unknown-unknown/release/counter.wasm
+
   clean:
     desc: Deletes all compilation artifacts
     cmds:
@@ -31,7 +37,7 @@ tasks:
     desc: Generates code coverage
     cmds:
       - task: clean
-      - cmd: ./coverage.sh
+      - cmd: ./cov.sh
 
   fmt:
     desc: Formats the code

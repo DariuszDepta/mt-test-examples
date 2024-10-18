@@ -7,7 +7,7 @@ pub enum CounterInitMsg {
 }
 
 #[cw_serde]
-pub enum CounterActionMsg {
+pub enum CounterExecMsg {
     Inc,
     Dec,
     Set(u8),
@@ -15,7 +15,7 @@ pub enum CounterActionMsg {
 
 #[cw_serde]
 #[derive(QueryResponses)]
-pub enum CounterQuery {
+pub enum CounterQueryMsg {
     #[returns(CounterResponse)]
     Value,
 }

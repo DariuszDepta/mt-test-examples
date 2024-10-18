@@ -1,11 +1,11 @@
 use cosmwasm_schema::write_api;
 
-use counter::msg::{CounterActionMsg, CounterInitMsg, CounterQuery};
+use counter::msg::{CounterExecMsg, CounterInitMsg, CounterQueryMsg};
 
 fn main() {
     write_api! {
         instantiate: CounterInitMsg,
-        execute: CounterActionMsg,
-        query: CounterQuery,
+        execute: CounterExecMsg,
+        query: CounterQueryMsg,
     }
 }
