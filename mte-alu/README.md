@@ -4,7 +4,7 @@ MultiTest | Examples
 
 The purpose of this project is following:
 
-- show how to configure the logic of the smart contract during smart contract instantiation,
+- show how to configure the logic of the smart contract during instantiation,
 - show how to use submessages,
 - diagnose/confirm the handling of the data returned from executing the contract,
 - diagnose/confirm the handling of message responses in replies,
