@@ -318,7 +318,6 @@ version = "0.1.0"
 dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
- "cw-multi-test",
  "cw-storage-plus",
  "schemars",
  "serde",
@@ -1118,6 +1117,7 @@ dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
+ "cw-utils",
  "derivative",
  "konst",
  "schemars",

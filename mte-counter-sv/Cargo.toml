@@ -21,5 +21,4 @@ serde = "1.0"
 sylvia = { version = "1" }
 
 [dev-dependencies]
-sylvia = { version = "1", features = ["mt"] }
-cw-multi-test = { version = "2", features = ["cosmwasm_2_0"] }
+sylvia = { version = "1", features = ["mt", "cosmwasm_2_0"] }
