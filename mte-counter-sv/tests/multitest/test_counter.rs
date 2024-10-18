@@ -16,7 +16,7 @@ fn instantiating_with_zero_should_work() {
         .call(&owner)
         .unwrap();
 
-    assert_eq!(0, contract.count().unwrap().value);
+    assert_eq!(0, contract.value().unwrap().value);
 }
 
 #[test]
@@ -32,7 +32,7 @@ fn instantiating_with_value_should_work() {
         .call(&owner)
         .unwrap();
 
-    assert_eq!(12, contract.count().unwrap().value);
+    assert_eq!(12, contract.value().unwrap().value);
 }
 
 #[test]
@@ -50,7 +50,7 @@ fn incrementing_should_work() {
 
     contract.inc().call(&owner).unwrap();
 
-    assert_eq!(1, contract.count().unwrap().value);
+    assert_eq!(1, contract.value().unwrap().value);
 }
 
 #[test]
@@ -70,7 +70,7 @@ fn incrementing_should_stop_at_maximum() {
         contract.inc().call(&owner).unwrap();
     }
 
-    assert_eq!(255, contract.count().unwrap().value);
+    assert_eq!(255, contract.value().unwrap().value);
 }
 
 #[test]
@@ -88,7 +88,7 @@ fn decrementing_should_work() {
 
     contract.dec().call(&owner).unwrap();
 
-    assert_eq!(125, contract.count().unwrap().value);
+    assert_eq!(125, contract.value().unwrap().value);
 }
 
 #[test]
@@ -108,7 +108,7 @@ fn decrementing_should_stop_at_minimum() {
         contract.dec().call(&owner).unwrap();
     }
 
-    assert_eq!(0, contract.count().unwrap().value);
+    assert_eq!(0, contract.value().unwrap().value);
 }
 
 #[test]
@@ -126,5 +126,5 @@ fn setting_value_should_work() {
 
     contract.set(125).call(&owner).unwrap();
 
-    assert_eq!(125, contract.count().unwrap().value);
+    assert_eq!(125, contract.value().unwrap().value);
 }

@@ -51,7 +51,7 @@ impl CounterContract {
     }
 
     #[sv::msg(query)]
-    fn count(&self, ctx: QueryCtx) -> StdResult<CounterResponse> {
+    fn value(&self, ctx: QueryCtx) -> StdResult<CounterResponse> {
         let value = self.count.load(ctx.deps.storage)?;
         Ok(CounterResponse { value })
     }

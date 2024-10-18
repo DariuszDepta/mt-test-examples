@@ -16,6 +16,12 @@ tasks:
     cmds:
       - cmd: cargo +stable build
 
+  check:
+    desc: Checks the Wasm binary of the compiled contract
+    cmds:
+      - task: wasm
+      - cmd: cosmwasm-check ./target/wasm32-unknown-unknown/release/counter.wasm
+
   clean:
     desc: Deletes all compilation artifacts
     cmds:
@@ -36,6 +42,11 @@ tasks:
     desc: Formats the code
     cmds:
       - cmd: cargo +stable fmt
+
+  schema:
+    desc: Builds the schema
+    cmds:
+      - cmd: cargo run --bin schema
 
   test:
     desc: Runs all tests in debug mode
