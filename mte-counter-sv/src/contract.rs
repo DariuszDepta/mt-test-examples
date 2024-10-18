@@ -18,9 +18,9 @@ impl CounterContract {
     }
 
     #[sv::msg(instantiate)]
-    fn zero(&self, ctx: InstantiateCtx, msg: CounterInitMsg) -> StdResult<Response> {
+    fn init(&self, ctx: InstantiateCtx, msg: CounterInitMsg) -> StdResult<Response> {
         match msg {
-            CounterInitMsg::Zero => self.count.save(ctx.deps.storage, &0)?,
+            CounterInitMsg::Zero {} => self.count.save(ctx.deps.storage, &0)?,
             CounterInitMsg::Set(value) => self.count.save(ctx.deps.storage, &value)?,
         }
         Ok(Response::new())

@@ -1,10 +1,9 @@
-use counter::contract::sv::{ContractExecMsg, ContractQueryMsg};
-use counter::msg::CounterInitMsg;
+use counter::contract::sv::{ContractExecMsg, ContractQueryMsg, InstantiateMsg};
 use sylvia::cw_schema::write_api;
 
 fn main() {
     write_api! {
-        instantiate: CounterInitMsg,
+        instantiate: InstantiateMsg,
         execute: ContractExecMsg,
         query: ContractQueryMsg,
     }

@@ -2,7 +2,7 @@ use cosmwasm_schema::cw_serde;
 
 #[cw_serde]
 pub enum CounterInitMsg {
-    Zero,
+    Zero {},
     Set(u8),
 }
 
