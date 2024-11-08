@@ -34,7 +34,7 @@ fn instantiating_with_value_should_work() {
 
     assert_eq!(12, contract.value().unwrap().value);
 }
-/*
+
 #[test]
 fn incrementing_should_work() {
     let app = App::default();
@@ -128,4 +128,3 @@ fn setting_value_should_work() {
 
     assert_eq!(125, contract.value().unwrap().value);
 }
-*/
