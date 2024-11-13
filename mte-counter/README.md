@@ -2,7 +2,7 @@ MultiTest | Examples
 
 # Counter
 
-Example **counter** smart contract written using pure CosmWasm library.
+Example **counter** smart contract written using pure CosmWasm libraries.
 
 ## Compiling
 
