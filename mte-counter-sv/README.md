@@ -2,22 +2,22 @@ MultiTest | Examples
 
 # Counter
 
-Counter smart contract written using Sylvia framework.
+Example **counter** smart contract written using Sylvia framework.
 
 ## Compiling
 
 ```shell
-cargo +stable build
+cargo build
 ```
 
-## Testing using `MultiTest`
+## Testing
 
 ```shell
-cargo +stable test
+cargo test
 ```
 
 ```shell
-cargo +stable nextest run
+cargo nextest run
 ```
 
 ## Building WASM binary
