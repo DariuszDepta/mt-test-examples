@@ -10,7 +10,7 @@ Counter smart contract written using pure CosmWasm library.
 cargo +stable build
 ```
 
-## Testing using `MultiTest`
+## Testing
 
 ```shell
 cargo +stable test
@@ -56,7 +56,7 @@ wasmd tx wasm instantiate 1 '"zero"' --label my-counter-1 --no-admin --from alic
 wasmd query wasm list-contract-by-code 1 -o json | jq
 ```
 
-_Output_:
+Output:
 ```json
 {
   "contracts": [
@@ -75,7 +75,7 @@ Query the current value of the counter contract (should be 0):
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"value"' -o json | jq
 ```
 
-_Output_:
+Output:
 ```json
 {
   "data": {
@@ -96,7 +96,7 @@ Query the current value of the counter contract (should be 1):
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"value"' -o json | jq
 ```
 
-_Output_:
+Output:
 ```json
 {
   "data": {
@@ -117,7 +117,7 @@ Query the current value of the counter contract (should be 53):
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"value"' -o json | jq
 ```
 
-_Output_:
+Output:
 ```json
 {
   "data": {

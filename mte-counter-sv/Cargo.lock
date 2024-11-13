@@ -1117,7 +1117,6 @@ dependencies = [
  "cosmwasm-schema",
  "cosmwasm-std",
  "cw-multi-test",
- "cw-utils",
  "derivative",
  "konst",
  "schemars",
