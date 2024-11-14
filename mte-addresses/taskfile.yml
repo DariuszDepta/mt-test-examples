@@ -5,7 +5,7 @@ silent: true
 tasks:
 
   all:
-    desc: Performs clen and test
+    desc: Performs clean and test
     cmds:
       - cmd: cargo clean
       - cmd: cargo update

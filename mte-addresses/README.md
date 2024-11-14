@@ -2,7 +2,7 @@
 
 ## Cargo.toml
 
-There are several Cargo.toml configuration files prepared for specific MultiTest/CosmWasm version combinations.
+There are several `Cargo.toml` configuration files prepared for specific `MultiTest`/`CosmWasm` version combinations.
 
 ### MultiTest 2.x | CosmWasm 2.x
 
