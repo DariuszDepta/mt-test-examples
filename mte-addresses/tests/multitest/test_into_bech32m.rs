@@ -1,7 +1,12 @@
 use super::*;
 
 #[test]
-fn creating_address_should_work() {
+fn rule_1() {
+    // not possible
+}
+
+#[test]
+fn rule_2() {
     use cw_multi_test::IntoBech32m;
 
     let addr = "owner".into_bech32m();
@@ -10,7 +15,12 @@ fn creating_address_should_work() {
 }
 
 #[test]
-fn creating_address_with_default_prefix_should_work() {
+fn rule_3() {
+    // not possible
+}
+
+#[test]
+fn rule_4() {
     use cw_multi_test::IntoBech32m;
 
     let addr = "owner".into_bech32m_with_prefix(CW_PREFIX);
@@ -19,7 +29,12 @@ fn creating_address_with_default_prefix_should_work() {
 }
 
 #[test]
-fn creating_address_with_custom_prefix_should_work() {
+fn rule_5() {
+    // not possible
+}
+
+#[test]
+fn rule_6() {
     use cw_multi_test::IntoBech32m;
 
     let addr = "owner".into_bech32m_with_prefix(NB_PREFIX);
