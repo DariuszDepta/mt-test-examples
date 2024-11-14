@@ -27,5 +27,12 @@
  4 | into_bech32m() |          -            |       -        | CW_PREFIX | CW_BECH32M | T |
  5 | into_bech32m() |          -            |       -        | NB_PREFIX | NB_BECH32  | N |
  6 | into_bech32m() |          -            |       -        | NB_PREFIX | NB_BECH32M | T |
+ 
+ 1 | MockApi        | MockApi::default      |       -        |     -     | CW_BECH32  | T |
+ 2 | MockApi        | MockApi::default      |       -        |     -     | CW_BECH32M | N |
+ 3 | MockApi        | MockApi::with_prefix  |       -        | CW_PREFIX | CW_BECH32  | T |
+ 4 | MockApi        | MockApi::with_prefix  |       -        | CW_PREFIX | CW_BECH32M | N |
+ 5 | MockApi        | MockApi::with_prefix  |       -        | NB_PREFIX | NB_BECH32  | T |
+ 6 | MockApi        | MockApi::with_prefix  |       -        | NB_PREFIX | NB_BECH32M | N |
 
 ```
