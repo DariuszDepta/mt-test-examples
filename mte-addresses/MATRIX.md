@@ -34,5 +34,19 @@
  4 | MockApi        | MockApi::with_prefix  |       -        | CW_PREFIX | CW_BECH32M | N |
  5 | MockApi        | MockApi::with_prefix  |       -        | NB_PREFIX | NB_BECH32  | T |
  6 | MockApi        | MockApi::with_prefix  |       -        | NB_PREFIX | NB_BECH32M | N |
+ 
+ 1 | MockApiBech32  |          -            |       -        |     -     | CW_BECH32  | N |
+ 2 | MockApiBech32  |          -            |       -        |     -     | CW_BECH32M | N |
+ 3 | MockApiBech32  |          -            |       -        | CW_PREFIX | CW_BECH32  | T |
+ 4 | MockApiBech32  |          -            |       -        | CW_PREFIX | CW_BECH32M | N |
+ 5 | MockApiBech32  |          -            |       -        | NB_PREFIX | NB_BECH32  | T |
+ 6 | MockApiBech32  |          -            |       -        | NB_PREFIX | NB_BECH32M | N |
+ 
+ 1 | MockApiBech32m |          -            |       -        |     -     | CW_BECH32  | N |
+ 2 | MockApiBech32m |          -            |       -        |     -     | CW_BECH32M | N |
+ 3 | MockApiBech32m |          -            |       -        | CW_PREFIX | CW_BECH32  | N |
+ 4 | MockApiBech32m |          -            |       -        | CW_PREFIX | CW_BECH32M | T |
+ 5 | MockApiBech32m |          -            |       -        | NB_PREFIX | NB_BECH32  | N |
+ 6 | MockApiBech32m |          -            |       -        | NB_PREFIX | NB_BECH32M | T |
 
 ```
