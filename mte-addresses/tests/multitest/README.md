@@ -1,3 +1,12 @@
+# Legend
+
+- CW_PREFIX = `"cosmwasm"`;
+- CW_BECH32 = `"cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqs2g053y"`;
+- CW_BECH32M = `"cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsl5lc5x"`;
+- NB_PREFIX = `"nebula"`;
+- NB_BECH32 = `"nebula1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsvsqrvp"`;
+- NB_BECH32M = `"nebula1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsevs0fr"`;
+
 # Full matrix
 
 ```text

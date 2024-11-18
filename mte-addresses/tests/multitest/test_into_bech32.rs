@@ -1,5 +1,3 @@
-use super::*;
-
 #[test]
 fn rule_1() {
     use cw_multi_test::IntoBech32;
