@@ -53,7 +53,7 @@ fn updating_block_should_work() {
     // create the default chain simulator
     let mut app = App::default();
 
-    // update the block by `moving` to the next one
+    // update the block by `generating` next block
     app.update_block(next_block);
 
     // get the current block properties
@@ -78,7 +78,7 @@ fn updating_to_custom_block_should_work() {
     // create the default chain simulator
     let mut app = App::default();
 
-    // 'move' to custom block
+    // 'generate' custom block
     app.update_block(|block|{
         block.time = block.time.plus_days(6);
         block.height += 10000;
