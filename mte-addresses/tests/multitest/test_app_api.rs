@@ -1,5 +1,3 @@
-use super::*;
-
 #[test]
 fn rule_1() {
     use cw_multi_test::App;
@@ -8,9 +6,10 @@ fn rule_1() {
 
     let addr = app.api().addr_make("owner");
 
-    assert_eq!(CW_BECH32, addr.as_str());
-
-    assert_eq!(CW_BECH32, App::default().api().addr_make("owner").as_str());
+    assert_eq!(
+        "cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqs2g053y",
+        addr.as_str()
+    );
 }
 
 #[test]
@@ -23,12 +22,15 @@ fn rule_3() {
     use cw_multi_test::{no_init, AppBuilder, MockApiBech32};
 
     let app = AppBuilder::default()
-        .with_api(MockApiBech32::new(CW_PREFIX))
+        .with_api(MockApiBech32::new("cosmwasm"))
         .build(no_init);
 
     let addr = app.api().addr_make("owner");
 
-    assert_eq!(CW_BECH32, addr.as_str());
+    assert_eq!(
+        "cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqs2g053y",
+        addr.as_str()
+    );
 }
 
 #[test]
@@ -36,12 +38,15 @@ fn rule_4() {
     use cw_multi_test::{no_init, AppBuilder, MockApiBech32m};
 
     let app = AppBuilder::default()
-        .with_api(MockApiBech32m::new(CW_PREFIX))
+        .with_api(MockApiBech32m::new("cosmwasm"))
         .build(no_init);
 
     let addr = app.api().addr_make("owner");
 
-    assert_eq!(CW_BECH32M, addr.as_str());
+    assert_eq!(
+        "cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsl5lc5x",
+        addr.as_str()
+    );
 }
 
 #[test]
@@ -49,12 +54,15 @@ fn rule_5() {
     use cw_multi_test::{no_init, AppBuilder, MockApiBech32};
 
     let app = AppBuilder::default()
-        .with_api(MockApiBech32::new(NB_PREFIX))
+        .with_api(MockApiBech32::new("nebula"))
         .build(no_init);
 
     let addr = app.api().addr_make("owner");
 
-    assert_eq!(NB_BECH32, addr.as_str());
+    assert_eq!(
+        "nebula1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsvsqrvp",
+        addr.as_str()
+    );
 }
 
 #[test]
@@ -62,20 +70,13 @@ fn rule_6() {
     use cw_multi_test::{no_init, AppBuilder, MockApiBech32m};
 
     let app = AppBuilder::default()
-        .with_api(MockApiBech32m::new(NB_PREFIX))
+        .with_api(MockApiBech32m::new("nebula"))
         .build(no_init);
 
     let addr = app.api().addr_make("owner");
 
-    assert_eq!(NB_BECH32M, addr.as_str());
-
     assert_eq!(
-        NB_BECH32M,
-        AppBuilder::default()
-            .with_api(MockApiBech32m::new(NB_PREFIX))
-            .build(no_init)
-            .api()
-            .addr_make("owner")
-            .as_str()
+        "nebula1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsevs0fr",
+        addr.as_str()
     );
 }
