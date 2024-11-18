@@ -48,7 +48,7 @@ fn setting_initial_block_should_work() {
 
 #[test]
 fn updating_block_should_work() {
-    use cw_multi_test::{App, next_block};
+    use cw_multi_test::{next_block, App};
 
     // create the default chain simulator
     let mut app = App::default();
@@ -79,7 +79,7 @@ fn updating_to_custom_block_should_work() {
     let mut app = App::default();
 
     // 'generate' custom block
-    app.update_block(|block|{
+    app.update_block(|block| {
         block.time = block.time.plus_days(6);
         block.height += 10000;
     });
@@ -97,4 +97,33 @@ fn updating_to_custom_block_should_work() {
 
     // chain identifier remains unchanged
     assert_eq!("cosmos-testnet-14002", block.chain_id);
+}
+
+#[test]
+fn updating_to_custom_block_with_chain_id_should_work() {
+    use cw_multi_test::App;
+
+    // create the default chain simulator
+    let mut app = App::default();
+
+    // 'generate' custom block
+    app.update_block(|block| {
+        block.time = block.time.plus_days(6);
+        block.height += 10000;
+        block.chain_id = "starship".to_string()
+    });
+
+    // get the block properties after updating
+    let block = app.block_info();
+
+    // now the block height is 10000 after the initial value
+    assert_eq!(22345, block.height);
+
+    // now the block timestamp is 6 days after the initial value
+    // current value is:   Wed Oct 23 2019 02:23:44 GMT+0000
+    // initial value was:  Tue Oct 29 2019 02:23:39 GMT+0000
+    assert_eq!(1572315819879305533, block.time.nanos());
+
+    // chain identifier remains unchanged
+    assert_eq!("starship", block.chain_id);
 }
