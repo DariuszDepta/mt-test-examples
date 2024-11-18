@@ -1,12 +1,13 @@
-use super::*;
-
 #[test]
 fn rule_1() {
     use cosmwasm_std::testing::MockApi;
 
     let addr = MockApi::default().addr_make("owner");
 
-    assert_eq!(CW_BECH32, addr.as_str());
+    assert_eq!(
+        "cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqs2g053y",
+        addr.as_str()
+    );
 }
 
 #[test]
@@ -18,9 +19,14 @@ fn rule_2() {
 fn rule_3() {
     use cosmwasm_std::testing::MockApi;
 
-    let addr = MockApi::default().with_prefix(CW_PREFIX).addr_make("owner");
+    let addr = MockApi::default()
+        .with_prefix("cosmwasm")
+        .addr_make("owner");
 
-    assert_eq!(CW_BECH32, addr.as_str());
+    assert_eq!(
+        "cosmwasm1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqs2g053y",
+        addr.as_str()
+    );
 }
 
 #[test]
@@ -32,9 +38,12 @@ fn rule_4() {
 fn rule_5() {
     use cosmwasm_std::testing::MockApi;
 
-    let addr = MockApi::default().with_prefix(NB_PREFIX).addr_make("owner");
+    let addr = MockApi::default().with_prefix("nebula").addr_make("owner");
 
-    assert_eq!(NB_BECH32, addr.as_str());
+    assert_eq!(
+        "nebula1fsgzj6t7udv8zhf6zj32mkqhcjcpv52yph5qsdcl0qt94jgdckqsvsqrvp",
+        addr.as_str()
+    );
 }
 
 #[test]

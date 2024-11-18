@@ -150,7 +150,6 @@
 │ test_mock_api.rs                                                                         │
 ├───┬────────────────┬───────────────────────┬────────────────┬───────────┬────────────┬───┤ 
 │ 1 │ MockApi        │ MockApi::default      │       -        │     -     │ CW_BECH32  │ T │
-│ 3 │ MockApi        │ MockApi::with_prefix  │       -        │ CW_PREFIX │ CW_BECH32  │ T │
 │ 5 │ MockApi        │ MockApi::with_prefix  │       -        │ NB_PREFIX │ NB_BECH32  │ T │
 ├───┴────────────────┴───────────────────────┴────────────────┴───────────┴────────────┴───┤
 │ test_mock_api_bech32.rs                                                                  │
