@@ -7,4 +7,4 @@ edition = "2021"
 cosmwasm-std = "2"
 
 [dev-dependencies]
-cw-multi-test = { version = "2", features = ["staking", "stargate", "cosmwasm_2_0"] }
+cw-multi-test = { version = "2", features = ["staking", "stargate", "cosmwasm_2_1"] }
