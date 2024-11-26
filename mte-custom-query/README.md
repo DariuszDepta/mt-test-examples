@@ -242,3 +242,53 @@ Output:
 ```
 
 Ok, the query has failed...
+
+
+Instantiate a contract with initial value set to 0 but from the second code id. 
+
+```shell
+sevdaysd tx wasm instantiate 2 '"zero"' --label my-scadder-1 --no-admin --from alice --chain-id sevdays -y -o json | jq
+```
+
+List all instantiated contracts from code id = 2.
+
+```shell
+sevdaysd query wasm list-contract-by-code 2 -o json | jq
+```
+
+```json
+{
+  "contracts": [
+    "cosmos1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqez7la9"
+  ],
+  "pagination": {
+    "next_key": null,
+    "total": "0"
+  }
+}
+```
+
+Query the current value of the counter contract:
+
+```shell
+sevdaysd query wasm contract-state smart cosmos1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqez7la9 '"value"' -o json | jq
+```
+
+```json
+{
+  "data": {
+    "value": 0
+  }
+}
+```
+
+Add two values and set as a counter's value:
+
+```shell
+sevdaysd tx wasm execute cosmos1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqez7la9 '{"add":[10,20]}' --from alice --chain-id sevdays -y -o json | jq
+```
+
+
+```shell
+sevdaysd query wasm contract-state smart cosmos1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqez7la9 '"text"' -o json | jq
+```
