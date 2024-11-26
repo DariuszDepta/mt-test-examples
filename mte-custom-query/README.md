@@ -5,7 +5,7 @@
 Store the contract on chain:
 
 ```shell
-sevdaysd tx wasm store scadder.wasm --from alice --chain-id sevdays --gas 10000000 -o json -y | jq
+sevdaysd tx wasm store scadder.wasm --from alice --chain-id sevdays --gas 10000000 -y -o json | jq
 ```
 
 Output:
@@ -59,7 +59,7 @@ Output:
 Instantiate a contract with initial value set to 0. 
 
 ```shell
-sevdaysd tx wasm instantiate 1 '"zero"' --label my-scadder-1 --no-admin --from alice --chain-id sevdays -o json -y | jq
+sevdaysd tx wasm instantiate 1 '"zero"' --label my-scadder-1 --no-admin --from alice --chain-id sevdays -y -o json | jq
 ```
 
 Output:
@@ -102,3 +102,100 @@ Output:
 }
 ```
 
+Query the current value of the counter contract (should be 0):
+
+```shell
+sevdaysd query wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"value"' -o json | jq
+```
+
+Output:
+
+```json
+{
+  "data": {
+    "value": 0
+  }
+}
+```
+
+Set the value of the counter to 53:
+
+```shell
+sevdaysd tx wasm execute cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '{"set":53}' --from alice --chain-id sevdays -y -o json | jq
+```
+
+Output:
+
+```json
+{
+  "height": "0",
+  "txhash": "B3D19BE180FE2799349D6FD349A930D2DCB764A41420F303AD754C413D0144E4",
+  "codespace": "",
+  "code": 0,
+  "data": "",
+  "raw_log": "",
+  "logs": [],
+  "info": "",
+  "gas_wanted": "0",
+  "gas_used": "0",
+  "tx": null,
+  "timestamp": "",
+  "events": []
+}
+```
+
+Query the current value of the counter contract (should be 53):
+
+```shell
+sevdaysd query wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"value"' -o json | jq
+```
+
+Output:
+
+```json
+{
+  "data": {
+    "value": 53
+  }
+}
+```
+
+Increment the counter value by one:
+
+```shell
+sevdaysd tx wasm execute cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"inc"' --from alice --chain-id sevdays -y -o json | jq
+```
+
+Output:
+
+```json
+{
+  "height": "0",
+  "txhash": "126C1E2B95A0F76435114FD7500B2409D66BB7881E52C1E2F7F75D841B14E03F",
+  "codespace": "",
+  "code": 0,
+  "data": "",
+  "raw_log": "",
+  "logs": [],
+  "info": "",
+  "gas_wanted": "0",
+  "gas_used": "0",
+  "tx": null,
+  "timestamp": "",
+  "events": []
+}
+```
+
+Query the current value of the counter contract (should be 54):
+
+```shell
+sevdaysd query wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"value"' -o json | jq
+```
+
+```json
+{
+  "data": {
+    "value": 54
+  }
+}
+```
