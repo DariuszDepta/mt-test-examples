@@ -116,14 +116,3 @@ Query the current value of the counter contract (should be 53):
 ```shell
 wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s0phg4d '"value"' -o json | jq
 ```
-
-Output:
-```json
-{
-  "data": {
-    "value": 255
-  }
-}
-```
-
-Ok, the query has failed...
