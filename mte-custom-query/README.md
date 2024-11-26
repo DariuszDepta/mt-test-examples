@@ -232,9 +232,13 @@ Query the current value of the counter contract:
 sevdaysd query wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"value"' -o json | jq
 ```
 
+Output:
 ```json
-?
+{
+  "data": {
+    "value": 255
+  }
+}
 ```
 
-
-
+Ok, the query has failed...
