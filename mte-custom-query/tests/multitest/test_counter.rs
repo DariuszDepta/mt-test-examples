@@ -1,9 +1,9 @@
 use cosmwasm_std::Empty;
-use scadder::msg::{CounterExecMsg, CounterInitMsg, CounterQueryMsg, CounterResponse};
-use cw_multi_test::{App, Contract, ContractWrapper, Executor, IntoAddr};
+use scadder::msg::{CounterExecMsg, CounterInitMsg, CounterQueryMsg, CounterResponse, ScadderQuery};
+use cw_multi_test::{custom_app, no_init, BasicApp, Contract, ContractWrapper, Executor, IntoAddr};
 
-fn counter_contract() -> Box<dyn Contract<Empty>> {
-    Box::new(ContractWrapper::new_with_empty(
+fn counter_contract() -> Box<dyn Contract<Empty, ScadderQuery>> {
+    Box::new(ContractWrapper::new(
         scadder::contract::execute,
         scadder::contract::instantiate,
         scadder::contract::query,
@@ -12,7 +12,7 @@ fn counter_contract() -> Box<dyn Contract<Empty>> {
 
 #[test]
 fn instantiating_with_zero_should_work() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
@@ -39,7 +39,7 @@ fn instantiating_with_zero_should_work() {
 
 #[test]
 fn instantiating_with_value_should_work() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
@@ -66,7 +66,7 @@ fn instantiating_with_value_should_work() {
 
 #[test]
 fn incrementing_should_work() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
@@ -96,7 +96,7 @@ fn incrementing_should_work() {
 
 #[test]
 fn incrementing_should_stop_at_maximum() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
@@ -133,7 +133,7 @@ fn incrementing_should_stop_at_maximum() {
 
 #[test]
 fn decrementing_should_work() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
@@ -163,7 +163,7 @@ fn decrementing_should_work() {
 
 #[test]
 fn decrementing_should_stop_at_minimum() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
@@ -200,7 +200,7 @@ fn decrementing_should_stop_at_minimum() {
 
 #[test]
 fn setting_value_should_work() {
-    let mut app = App::default();
+    let mut app: BasicApp<Empty, ScadderQuery> = custom_app::<Empty, ScadderQuery, _>(no_init);
 
     let code_id = app.store_code(counter_contract());
 
