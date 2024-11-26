@@ -199,3 +199,42 @@ sevdaysd query wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhu
   }
 }
 ```
+
+Add two values and set as a counter's value:
+
+```shell
+sevdaysd tx wasm execute cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '{"add":[10,20]}' --from alice --chain-id sevdays -y -o json | jq
+```
+
+Output:
+
+```json
+{
+  "height": "0",
+  "txhash": "A9905287B3435E08FE324AED461A00D2686F4B815D8AB344E4256F277E1C9465",
+  "codespace": "",
+  "code": 0,
+  "data": "",
+  "raw_log": "",
+  "logs": [],
+  "info": "",
+  "gas_wanted": "0",
+  "gas_used": "0",
+  "tx": null,
+  "timestamp": "",
+  "events": []
+}
+```
+
+Query the current value of the counter contract:
+
+```shell
+sevdaysd query wasm contract-state smart cosmos14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9s4hmalr '"value"' -o json | jq
+```
+
+```json
+?
+```
+
+
+
