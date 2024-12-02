@@ -16,9 +16,8 @@ pub fn instantiate(
     _info: MessageInfo,
     _msg: Empty,
 ) -> StdResult<Response> {
-    VALUES
-        .access(&mut CwStorage(deps.storage))
-        .set(&Values::default())?;
+    let mut cw_storage = CwStorage(deps.storage);
+    VALUES.access(&mut cw_storage).set(&Values::default())?;
     Ok(Response::default())
 }
 
@@ -31,9 +30,8 @@ pub fn execute(
 ) -> StdResult<Response> {
     match msg {
         RotatorExecMsg::Clear => {
-            VALUES
-                .access(&mut CwStorage(deps.storage))
-                .set(&Values::default())?;
+            let mut cw_storage = CwStorage(deps.storage);
+            VALUES.access(&mut cw_storage).set(&Values::default())?;
         }
         RotatorExecMsg::Value(value, decimals) => {
             let mut cw_storage = CwStorage(deps.storage);
