@@ -1,5 +1,5 @@
-use crate::defs::Values;
-use crate::msg::{RotatorQueryMsg, RotatorResponse};
+use crate::defs::{Value, Values};
+use crate::msg::{RotatorExecMsg, RotatorQueryMsg, RotatorResponse};
 use cosmwasm_std::{
     entry_point, to_json_binary, Binary, Deps, DepsMut, Empty, Env, MessageInfo, Response,
     StdResult,
@@ -23,7 +23,28 @@ pub fn instantiate(
 }
 
 #[cfg_attr(not(feature = "library"), entry_point)]
-pub fn execute(_deps: DepsMut, _env: Env, _info: MessageInfo, _msg: Empty) -> StdResult<Response> {
+pub fn execute(
+    deps: DepsMut,
+    _env: Env,
+    _info: MessageInfo,
+    msg: RotatorExecMsg,
+) -> StdResult<Response> {
+    match msg {
+        RotatorExecMsg::Clear => {
+            VALUES
+                .access(&mut CwStorage(deps.storage))
+                .set(&Values::default())?;
+        }
+        RotatorExecMsg::Value(value, decimals) => {
+            let mut cw_storage = CwStorage(deps.storage);
+            let mut values = VALUES
+                .access(&cw_storage)
+                .get()?
+                .unwrap_or(Values::default());
+            values.append(Value::new(value, decimals));
+            VALUES.access(&mut cw_storage).set(&values)?;
+        }
+    }
     Ok(Response::default())
 }
 
