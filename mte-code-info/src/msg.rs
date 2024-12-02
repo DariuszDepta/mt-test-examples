@@ -5,9 +5,13 @@ use cosmwasm_schema::{cw_serde, QueryResponses};
 pub enum NayelQueryMsg {
     #[returns(NayelResponse)]
     Address,
+    #[returns(NayelResponse)]
+    Reason,
+    #[returns(NayelResponse)]
+    CodeId,
 }
 
 #[cw_serde]
 pub struct NayelResponse {
-    pub address: String,
+    pub value: String,
 }

@@ -115,3 +115,26 @@ $ wasmd query wasm contract-state smart wasm14hj2tavq8fpesdwxxcu44rty3hh90vhujrv
   }
 }
 ```
+
+
+---
+
+```shell
+$ wasmd query wasm contract-state smart wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht '"address"' -o json | jq
+```
+
+```shell
+$ wasmd query wasm contract-state smart wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht '"code_id"' -o json | jq
+```
+
+```shell
+$ wasmd query wasm contract-state smart wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht '"reason"' -o json | jq
+```
+
+```json
+{
+  "data": {
+    "value": "Generic error: Querier system error: No such contract: wasm1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrqr5j2ht"
+  }
+}
+```
