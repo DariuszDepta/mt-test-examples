@@ -6,7 +6,11 @@ pub enum NayelQueryMsg {
     #[returns(NayelResponse)]
     Address,
     #[returns(NayelResponse)]
+    AddressTwo,
+    #[returns(NayelResponse)]
     Reason,
+    #[returns(NayelResponse)]
+    ReasonTwo,
     #[returns(NayelResponse)]
     CodeId,
 }

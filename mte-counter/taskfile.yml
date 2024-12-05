@@ -44,6 +44,12 @@ tasks:
     cmds:
       - cmd: cargo +stable fmt
 
+  optimize:
+    desc: Optimize the size of the smart contract
+    cmds:
+      - cmd: docker pull cosmwasm/optimizer:0.16.1
+      - cmd: docker run --rm -v "$(pwd)":/code --mount type=volume,source="$(basename "$(pwd)")_cache",target=/target --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry cosmwasm/optimizer:0.16.1
+
   schema:
     desc: Builds the schema
     cmds:
@@ -62,7 +68,7 @@ tasks:
   wasm:
     desc: Builds the Wasm binary
     cmds:
-      - cmd: cargo build --release --target wasm32-unknown-unknown --lib
+      - cmd: cargo +1.81.0-x86_64-unknown-linux-gnu build --release --target wasm32-unknown-unknown --lib
 
   wasm-debug:
     desc: Builds the Wasm binary in debug mode
